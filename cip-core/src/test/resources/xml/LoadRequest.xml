@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:LoadShippingUnitRequest requestTransactionID="123435" xmlns:tns="http://www.cts.com/cip/LoadShippingUnitRequest" xmlns:tns1="http://www.cts.com/cip/Common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cts.com/cip/LoadShippingUnitRequest LoadShippingUnitRequest.xsd ">
+<load>
+<tns1:id>0</tns1:id>
+<tns1:loadReferenceId>TEst1234567889test</tns1:loadReferenceId>
+<tns1:loadTrailerNumber>TEst1234567889test</tns1:loadTrailerNumber>
+<tns1:carrierloadTrailerNumber>TEst1234567889test</tns1:carrierloadTrailerNumber>
+<tns1:distributionCenterID>sdfdsfdsf</tns1:distributionCenterID>
+<tns1:carrierID>test </tns1:carrierID> 
+<tns1:totalUnitCount>0</tns1:totalUnitCount>
+<tns1:totalUnitWeight tns1:weightUOM="LBS">
+<tns1:unitWeight>888.9</tns1:unitWeight>
+</tns1:totalUnitWeight>
+<tns1:status>STATUS</tns1:status>
+</load>
+<shippingBaseUnits tns1:type="CARTON">
+<tns1:id>0</tns1:id>
+<tns1:transactionId>121323</tns1:transactionId>
+<tns1:referenceID>3243265546546</tns1:referenceID>
+<tns1:description>Description</tns1:description>
+<tns1:state>INITIATED</tns1:state>
+</shippingBaseUnits>
+</tns:LoadShippingUnitRequest>

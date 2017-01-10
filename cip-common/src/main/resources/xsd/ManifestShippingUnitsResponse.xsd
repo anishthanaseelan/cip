@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.cts.com/cip/Common"
+	targetNamespace="http://www.cts.com/cip/ManifestShippingUnitsResponse" 
+	xmlns:tns="http://www.cts.com/cip/ManifestShippingUnitsResponse">	
+
+	<!-- Import the dependency xsds -->
+	<xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+              
+	<xs:element name="ManifestShippingUnitsResponse">
+		<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="status" type="common:status"/>
+    			<xs:element name="load" type="common:loadBase" 
+    				minOccurs = "1" maxOccurs = "1"/>
+    			<xs:element name="shippingUnitStatusList" type="common:shippingUnitStatus" 
+    			minOccurs = "1" maxOccurs = "unbounded"/>
+    		</xs:sequence>
+    		<xs:attribute name="responseTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+  	</xs:element>
+    
+</xs:schema>

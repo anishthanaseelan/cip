@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- import the carrier definition -->
+	<import resource="data-source-config.xml" />
+	<context:component-scan base-package="com.cts.cip.master" />
+	<!-- enables scanning for @Transactional annotations -->
+	<tx:annotation-driven />
+	<beans profile="test">
+		<context:property-placeholder
+			location="classpath:properties/cip-master.properties"
+			system-properties-mode="OVERRIDE" />
+		<context:annotation-config />
+		<!-- JPA EntityManagerFactory -->
+		<bean id="entityManagerFactory"
+			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+			p:dataSource-ref="dataSource">
+			<property name="jpaVendorAdapter">
+				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+					p:database="${jpa.database}" p:showSql="${jpa.showSql}" />
+			</property>
+			<property name="packagesToScan" value="com.cts.cip.master.repository" />
+		</bean>
+
+		<!-- Transaction manager for a single JPA EntityManagerFactory (alternative 
+			to JTA) -->
+		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+			p:entityManagerFactory-ref="entityManagerFactory" />
+		<!-- Post-processor to perform exception translation on @Repository classes 
+			(from native exceptions such as JPA PersistenceExceptions to Spring's DataAccessException 
+			hierarchy).-->
+		<bean
+			class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	</beans>
+
+</beans>

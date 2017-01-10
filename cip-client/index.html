@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="cip">
+<head>
+    <title>{{'CIP_Full' | i18next}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top ensure-on-top navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{'CIP_Full' | i18next}}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar" ng-controller="navigationController as navCtrl">
+            <ul class="nav navbar-nav">
+                <li><a href="#/dashBoard">{{'Home_Full' | i18next}}</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">{{'Set_Up_Full' | i18next}}<span
+                            class=" caret"></span></a>
+                    <ul id="parentMenu" class="dropdown-menu">
+                        <li><a href="#/carrierList">{{'Carrier_Maintenance_Full' | i18next}}</a></li>
+                        <li class="dropdown-submenu">
+                            <a is-active-nav href="">{{'Node_Maintenance_Full' | i18next}}</a>
+                            <ul class="dropdown-menu">
+                                <li><a is-active-nav href="#/searchNode">{{'Node_List_Full' | i18next}}</a></li>
+                                <li><a is-active-nav href="#/addNode">{{'Add_Node_Full' | i18next}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a is-active-nav href="#/dashBoard">{{'Dashboard_Full' | i18next}}</a></li>
+                <li><a is-active-nav href="#/shipments">{{'Show_Shipment_Full' | i18next}}</a></li>
+                <li><a is-active-nav href="#/loadDetails">{{'Track_Load_Status_Full' | i18next}}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"
+         ng-class="'alert-' + (alert.type || 'warning')">{{ alert.msg }}
+    </div>
+    <div ui-view></div>
+</div>
+
+<div>
+    <!-- inject:js -->
+    <!-- endinject -->
+</div>
+
+</body>
+</html>

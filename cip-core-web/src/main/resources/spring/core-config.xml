@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<import resource="data-source-config.xml"/>
+	<import resource="core-service-config.xml"/>
+	
+	
+	<bean id="notificationManager" class="com.cts.cip.util.NotificationManager"/>
+		
+	 <!-- For Local Work space to run -->
+    <context:property-placeholder location="classpath:properties/cip-core.properties , classpath:properties/cip-core-data-access.properties, classpath:properties/document.properties" system-properties-mode="OVERRIDE"/>
+			
+	 <context:component-scan base-package="com.cts.cip"/>
+	<!-- enables scanning for @Transactional annotations -->
+    <tx:annotation-driven/>    
+        
+    <import resource="swagger-config.xml" /> 
+    <import resource="document-config.xml" />    
+   
+    
+	<beans profile="prod-jpa">
+	<context:annotation-config/>
+        <!-- JPA EntityManagerFactory -->
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+              p:dataSource-ref="prodDataSource">
+            <property name="jpaVendorAdapter">
+                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                      p:database="${jpa.database}" p:showSql="${jpa.showSql}"/>
+            </property>
+          <!--  <property name="packagesToScan" value="com.cts.cip.core.repository"/> -->
+            <property name="packagesToScan">
+		         <array>
+		              <value>com.cts.cip.core.repository</value>
+		              <value>com.cts.cip.document</value>
+		              <value>com.cts.cip.core.resources</value>
+		              <value>com.cts.cip</value>
+		              
+		         </array>
+    		 </property>  
+        </bean>
+
+        <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+              p:entityManagerFactory-ref="entityManagerFactory"/>
+
+        <!--
+            Post-processor to perform exception translation on @Repository classes (from native
+            exceptions such as JPA PersistenceExceptions to Spring's DataAccessException hierarchy).
+        -->
+	    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+	    
+    </beans>	
+	
+</beans>

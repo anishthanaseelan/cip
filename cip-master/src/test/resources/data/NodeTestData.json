@@ -1,0 +1,274 @@
+{
+	"statusResponse_Empty": {
+		"code": "002",
+		"codeDescription": "ERROR",
+		"description": "Error: No carriers was found for the id provided",
+		"detail": null,
+		"returnValue": null,
+		"fieldStatusList": null,
+		"errorDetailList": null,
+		"details": null
+	},
+	"statusResponse_Simple": {
+		"code": "001",
+		"codeDescription": "SUCCESS",
+		"description": "Updated the carrier changes successfully",
+		"detail": null,
+		"returnValue": "1",
+		"fieldStatusList": null,
+		"errorDetailList": null,
+		"details": null
+	},
+	"node_Simple": {
+		"id": "0",
+		"businessUnitId": "1",
+		"createTime": null,
+		"globalLocationNumber": "1234",
+		"location": {
+			"id": 1,
+			"city": "Bentonville",
+			"countryCode": "AR",
+			"name": "Node1",
+			"primaryContactName": "TestName1",
+			"primaryContactNumber": "1234567890",
+			"primaryContactEmail": "test@email.com",
+			"stateCode": "AR",
+			"zipCode": "72712",
+			"addressLine1": "Test Address line 1",
+			"addressLine2": "Test Address line 2"
+		},
+		"nodeCarrierServiceList": [
+			{
+				"id": {
+					"nodeId": "1",
+					"carrierServiceCode": "1"
+				},
+				"active": "true",
+				"accountNumber": "",
+				"meterNumber": "",
+				"createTime": "",
+				"updateTime": "",
+				"location": null,
+				"carrierService": {
+					"code": "CARSVC_1",
+					"carrierServiceType": null,
+					"createTime": null,
+					"iconUrl": null,
+					"scac": null,
+					"serviceLevel": null,
+					"serviceName": "CARSVC_1",
+					"updateTime": null,
+					"carrier": null,
+					"rulesList": [
+						{
+							"id": 1,
+							"createTime": null,
+							"description": "UPS Ground Weight Restriction 1",
+							"name": "UPS Ground Restriction 1",
+							"updateTime": null,
+							"ruleType": {
+								"id": 0,
+								"createTime": null,
+								"description": null,
+								"name": "RuleTypeName",
+								"updateTime": null,
+								"ruleTypeDefinitions": [
+									{
+										"id": {
+											"fieldId": 1,
+											"ruleTypeId": 2
+										},
+										"createTime": null,
+										"fieldName": "TEST",
+										"displayFieldName": "TEST",
+										"fieldType": "TEST",
+										"updateTime": null
+									}
+								]
+							},
+							"ruleDefinitionList": [
+								{
+									"id": {
+										"ruleId": 2,
+										"fieldId": 1
+									},
+									"createTime": null,
+									"updateTime": null,
+									"value": "TEST"
+								}
+							]
+						},
+						{
+							"id": 2,
+							"createTime": null,
+							"description": "UPS Ground Weight Restriction 2",
+							"name": "UPS Ground Restriction 2",
+							"updateTime": null,
+							"ruleType": {
+								"id": 0,
+								"createTime": null,
+								"description": null,
+								"name": "RuleTypeName",
+								"updateTime": null,
+								"ruleTypeDefinitions": [
+									{
+										"id": {
+											"fieldId": 1,
+											"ruleTypeId": 2
+										},
+										"createTime": null,
+										"fieldName": "TEST",
+										"displayFieldName": "TEST",
+										"fieldType": "TEST",
+										"updateTime": null
+									}
+								]
+							},
+							"ruleDefinitionList": [
+								{
+									"id": {
+										"ruleId": 2,
+										"fieldId": 1
+									},
+									"createTime": null,
+									"updateTime": null,
+									"value": "TEST"
+								}
+							]
+						}
+					],
+					"location": {
+						"id": 0,
+						"city": "TESTCITY",
+						"countryCode": "US",
+						"name": "TESTADDRESSNAME",
+						"primaryContactName": "TestName1",
+						"primaryContactNumber": "1234567890",
+						"primaryContactEmail": "test@email.com",
+						"stateCode": "AR",
+						"zipCode": "72712",
+						"addressLine1": " TEST_ADDRESS_LINE_1",
+						"addressLine2": null
+					},
+					"active": true
+				}
+			}
+		],
+		"name": "Node1",
+		"updateTime": null,
+		"active": true
+	},
+	"nodeInfo_Simple": {
+		"id": "1",
+		"name": "Node1",
+		"globalLocationNumber": "1234",
+		"description": "Node1 Description",
+		"locationId": "1",
+		"locationAddressLine1": "Test Address line 1",
+		"locationAddressLine2": "Test Address line 2",
+		"locationCity": "Bentonville",
+		"locationZipcode": "72712",
+		"locationStateCode": "AR",
+		"active": "true",
+		"businessUnitId": "1"
+	},
+	"nodeList_Simple": [
+		{
+			"id": "1",
+			"businessUnitId": "1",
+			"createTime": null,
+			"globalLocationNumber": "1234",
+			"location": {
+				"id": 1,
+				"city": "Bentonville",
+				"countryCode": "US",
+				"name": "TESTADDRESSNAME",
+				"primaryContactName": "TestName1",
+				"primaryContactNumber": "1234567890",
+				"primaryContactEmail": "test@email.com",
+				"stateCode": "AR",
+				"zipCode": "72712",
+				"addressLine1": "Test Address line 1",
+				"addressLine2": "Test Address line 2"
+			},
+			"nodeCarrierServiceList": null,
+			"name": "Node1",
+			"updateTime": null,
+			"active": true
+		}
+	],
+	"nodeInfoList_Simple": [
+		{
+			"id": "1",
+			"name": "Node1",
+			"globalLocationNumber": "1234",
+			"description": "Node1 Description",
+			"locationId": "1",
+			"locationAddressLine1": "Test Address line 1",
+			"locationAddressLine2": "Test Address line 2",
+			"locationCity": "Bentonville",
+			"locationZipcode": "72712",
+			"locationStateCode": "AR",
+			"active": "true",
+			"businessUnitId": "1"
+		}
+	],
+	"nodeDetail_Simple": {
+		"id": "0",
+		"name": "Node1",
+		"globalLocationNumber": "1234",
+		"description": "Node1 Description",
+		"locationId": "1",
+		"locationAddressLine1": "Test Address line 1",
+		"locationAddressLine2": "Test Address line 2",
+		"locationCity": "Bentonville",
+		"locationZipcode": "72712",
+		"locationStateCode": "AR",
+		"locationCountryCode": "AR",
+		"locationPrimaryContactName": "TestName1",
+		"locationPrimaryContactNumber": "1234567890",
+		"locationPrimaryContactEmail": "test@email.com",
+		"nodeStatusActive": "true",
+		"nodeCarrierInfoList": [
+			{
+				"id": "1",
+				"carrierName": "UPS",
+				"iconUrl": "test_url",
+				"active": "true",
+				"isActive": "true",
+				"carrierServiceInfoList": [
+				]
+			}
+		]
+	},
+	"nodeCarrierService_Simple": null,
+	"nodeCarrierServiceInfo_Simple": null,
+	"nodeSearchCriteria_Simple": {
+		"nodeName": "",
+		"nodeId": "",
+		"gln": "",
+		"addressLine1": "",
+		"city": "",
+		"stateCode": "",
+		"zipCode": "",
+		"country": "",
+		"contactName": "",
+		"email": "",
+		"searchCriteria": {
+			"pageNumber": "1",
+			"pageSize": "1",
+			"sortField": "",
+			"sortDirection": "",
+			"filterCriteria": [
+				{
+					"fieldName": "",
+					"fieldValue": "",
+					"identifier": "",
+					"fieldType": ""
+				}
+			]
+		}
+	},
+	"nodeSearchCriteria_Empty": {
+	}
+}

@@ -1,0 +1,18 @@
+{
+"15": "fedexHome",
+"20": "fedexGround",
+"21": "fedexPriorityOvernight",
+"22": "fedex2DayPrior",
+
+"2"  : "upsGround",
+"02" : "upsGround",
+"61" : "upsGround",
+"80" : "upsGround",
+"92" : "upsGround",
+"28" : "ups2DayAirAM",
+"26" : "upsNextDayAirSaver",
+
+"10" : "uspsFirstClass",
+"30" : "uspsPriority"
+
+}

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs ="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified" 
+	targetNamespace="http://www.cts.com/cip/Common" 
+	xmlns:tns="http://www.cts.com/cip/Common"
+	attributeFormDefault="qualified">
+
+	<xs:simpleType name="shortType">
+	  <xs:restriction base="xs:short"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="intType">
+	  <xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="stringType">
+	  <xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="dateType">
+	  <xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="decType">
+	  <xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="binayBase64Type">
+	  <xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="zipCodeType">
+	  	<xs:restriction base="tns:stringType">
+	    	<xs:pattern value="[0-9]{5}"/>
+	  	</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="phoneNumberType" >
+	  	<xs:restriction base="tns:stringType">
+	    	<xs:pattern value="[0-9]{10}"/>
+	  	</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="emailAddressType">
+	    <xs:restriction base="xs:token">
+	        <xs:maxLength value="254"/>
+	        <xs:pattern value="[_\-a-zA-Z0-9\.\+]+@[a-zA-Z0-9](\.?[\-a-zA-Z0-9]*[a-zA-Z0-9])*"/>
+	    </xs:restriction>
+	</xs:simpleType>
+	
+	<!-- All Enumerated Values  -->
+	
+	<xs:simpleType name="weightUOM">
+	   <xs:restriction base="xs:string">
+	    	<xs:enumeration value="LBS"/>
+	  	 	<xs:enumeration value="KGS"/>
+	   		<xs:enumeration value="OZS"/>
+	  </xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dimensionsUOM">
+	   <xs:restriction base="xs:string">
+	    	<xs:enumeration value="IN"/>
+	  	 	<xs:enumeration value="CM"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name = "shippingUnitType">
+    	<xs:restriction base="xs:string">
+    	 	<xs:enumeration value="PALLET" />
+    		<xs:enumeration value="CARTON" />
+    		<xs:enumeration value="BOX" />
+    		<xs:enumeration value="ENVELOPE"/>
+    		<xs:enumeration value="STANDARD"/>
+      	</xs:restriction>
+  	</xs:simpleType>
+  	<xs:simpleType name="currency">
+	   <xs:restriction base="xs:string">
+	    	<xs:enumeration value="USD"/>
+	  	 	<xs:enumeration value="INR"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="countryCode">
+	   <xs:restriction base="tns:stringType">
+	    	<xs:enumeration value="US"/>
+	  	 	<xs:enumeration value="UK"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="shippingDocumentType">
+	   <xs:restriction base="tns:stringType">
+	    	<xs:enumeration value="INVOICE"/>
+	    	<xs:enumeration value="INVOICE_WITH_LABEL"/>
+	  	 	<xs:enumeration value="LABEL"/>
+	  	 	<xs:enumeration value="REPRINT_LABEL"/>
+	  	 	<xs:enumeration value="CERTIFICATE_OF_ORIGIN"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="shippingDocumentContentType">
+	   <xs:restriction base="tns:stringType">
+	    	<xs:enumeration value="PDF"/>
+	  	 	<xs:enumeration value="PNG"/>
+	   </xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="fileFormat">
+	  	<xs:restriction base="xs:string">
+	   		<xs:enumeration value="PDF"/>
+	    	<xs:enumeration value="PNG"/>
+	    	<xs:enumeration value="ZPL"/>
+	    </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="shippingUnitState">
+	  	<xs:restriction base="xs:string">
+	   		<xs:enumeration value="INITIATED"/>
+	    	<xs:enumeration value="VALIDATED"/>
+	    	<xs:enumeration value="TRACKINGNUMBER_GENERATED"/>
+	    	<xs:enumeration value="LABEL_CREATED"/>
+	    	<xs:enumeration value="CANCELLED"/>
+	    	<xs:enumeration value="EXCEPTION"/>
+	    	<xs:enumeration value="FAILED"/>
+	    	<xs:enumeration value="CONFIRMED"/>
+	    </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="loadState">
+	  	<xs:restriction base="xs:string">
+	  		<xs:enumeration value="CREATED"/>
+	    	<xs:enumeration value="LOADING"/>
+	    	<xs:enumeration value="CANCELLED"/>
+	    	<xs:enumeration value="MANIFESTED"/>
+	    	<xs:enumeration value="MANIFESTED"/>
+	    	<xs:enumeration value="PARTIAL_MANIFEST"/>
+	    	<xs:enumeration value="FAILED_MANIFEST"/>
+	    </xs:restriction>
+	</xs:simpleType>
+	
+	<!--  End of Enumerated values  -->
+	
+	
+	<xs:complexType name="address">
+		<xs:sequence>
+			<xs:element name="individualName" type="tns:stringType"/>
+			<xs:element name="companyName" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="addressLine1" type="tns:stringType"/>
+		    <xs:element name="addressLine2" type="tns:stringType"  minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="addressLine3" type="tns:stringType"  minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="addressLine4" type="tns:stringType"  minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="city" type="tns:stringType"/>
+		    <xs:element name="state" type="tns:stringType"/>
+		    <xs:element name="country" type="tns:stringType"/>
+		    <xs:element name="countryCode" type="tns:countryCode" default="US"/>
+		    <xs:element name="zipCode" type="tns:zipCodeType"/>
+		    <xs:element name="phoneNumber" type="tns:phoneNumberType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="faxNumber" type="tns:phoneNumberType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="emailAddress" type="tns:emailAddressType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="price">
+	  	<xs:sequence>
+			<xs:element name="amount" type="tns:decType" minOccurs = "0"/>
+		</xs:sequence>
+		<xs:attribute name="currency" type ="tns:currency" default = "USD"/>
+	</xs:complexType>
+	
+  	<xs:complexType name="weight">
+	  	<xs:sequence>
+			<xs:element name="weight" type="tns:decType"  minOccurs = "0"/>
+		</xs:sequence>
+		<xs:attribute name="weightUOM" type ="tns:weightUOM" default = "LBS"/>
+	</xs:complexType>
+	
+	<xs:complexType name="dimensions">
+	  	<xs:sequence>
+			<xs:element name="length" type="tns:decType" minOccurs = "0"/>
+			<xs:element name="width" type="tns:decType" minOccurs = "0"/>
+			<xs:element name="height" type="tns:decType" minOccurs = "0"/>
+		</xs:sequence>
+		<xs:attribute name="dimensionUOM" type ="tns:dimensionsUOM" default = "IN"/>
+	</xs:complexType>
+	
+	<xs:complexType name="weightAndDimensions">
+	  	<xs:sequence>
+			<xs:element name="weight" type="tns:weight"/>
+			<xs:element name="dimensions" type="tns:dimensions"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="shippingUnitBase">
+	  	<xs:sequence>
+			<xs:element name="id" type="tns:intType"/>
+			<xs:element name="transactionId" type="tns:stringType"/>
+			<xs:element name="referenceID" type="tns:stringType"/>
+			<xs:element name="description" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="state" type="tns:shippingUnitState" minOccurs="0" maxOccurs="1"/>
+			
+		</xs:sequence>
+		<xs:attribute name="type" type ="tns:shippingUnitType" default="CARTON"/>
+	</xs:complexType>
+	
+	
+	<!-- Status Object -->
+	<xs:complexType name="error">
+			<xs:sequence>
+				<xs:element name="errorSeverity" type="tns:stringType"/>
+		    	<xs:element name="errorCode" type="tns:stringType" />
+		    	<xs:element name="errorDescription" type="tns:stringType"  minOccurs="0" maxOccurs="1"/>
+	  	</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name= "status">
+		<xs:sequence>
+		    <xs:element name="responseStatusCode" type="tns:stringType" />
+		    <xs:element name="responseStatusDescription" type="tns:stringType" />
+		    <xs:element name="responseDetailDescription" type="tns:stringType" />
+		    <xs:element name="errors" type="tns:error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- End of Status Object -->
+	
+	<xs:simpleType name= "trailerNumber">
+		<xs:restriction base="tns:stringType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name= "carrierTrailerNumber">
+		<xs:restriction base="tns:stringType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name= "distributionCenterID">
+		<xs:restriction base="tns:intType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name= "carrierID">
+		<xs:restriction base="tns:stringType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name= "totalUnitCount">
+		<xs:restriction base="tns:intType"/>
+	</xs:simpleType>
+	
+	<xs:complexType name="totalUnitWeight">
+	  	<xs:sequence>
+			<xs:element name="unitWeight" type="tns:decType"/>
+		</xs:sequence>
+		<xs:attribute name="weightUOM" type ="tns:weightUOM" default = "LBS"/>
+	</xs:complexType>
+	
+	<xs:complexType name = "shippingUnitStatus">
+		<xs:sequence>
+			<xs:element name="shippingUnit" type="tns:shippingUnitBase"/>
+			<xs:element name="status" type="tns:status"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="shippingDocument">
+		<xs:sequence>
+			<xs:element name="docId" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="documentName" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="url" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="type" type="tns:shippingDocumentType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="base64Content" type="tns:stringType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="contentType" type="tns:shippingDocumentContentType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name = "shippingUnitDocument">
+		<xs:sequence>
+			<xs:element name="status" type="tns:status"/>
+			<xs:element name="shippingUnitBase" type="tns:shippingUnitBase"/>
+			<xs:element name="shippingUnitDocuments" type="tns:shippingDocument" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Load Information Object -->
+	<xs:complexType name = "loadBase">
+		<xs:sequence>
+			<xs:element name="id" type="tns:intType" minOccurs = "0" maxOccurs = "1" />
+			<xs:element name="loadReferenceId" type="tns:stringType" minOccurs = "0" maxOccurs = "1" />
+			<xs:element name="loadTrailerNumber" type="tns:trailerNumber" minOccurs = "0" maxOccurs = "1" />
+		    <xs:element name="carrierloadTrailerNumber" type="tns:carrierTrailerNumber" minOccurs = "0" maxOccurs = "1"/>
+		    <xs:element name="distributionCenterID" type="tns:distributionCenterID" minOccurs = "0" maxOccurs = "1" />
+		    <xs:element name="carrierID" type="tns:carrierID" minOccurs = "0" maxOccurs = "1" />
+		    <xs:element name="carrierName" type="tns:stringType" minOccurs = "0" maxOccurs = "1" />
+		    <xs:element name="totalUnitCount" type="tns:totalUnitCount" minOccurs = "0" maxOccurs = "1" />
+		    <xs:element name="totalUnitWeight" type="tns:totalUnitWeight" minOccurs = "0" maxOccurs = "1"/>
+		    <!-- <xs:element name="status" type="tns:stringType" minOccurs = "0" maxOccurs = "1"/> -->
+		    <xs:element name="loadState" type="tns:loadState" minOccurs = "0" maxOccurs = "1"/>
+		    <!-- <xs:element name="shippingBaseUnits" type="tns:shippingUnitBase" minOccurs = "0" 
+    				maxOccurs="unbounded"/> -->
+		</xs:sequence>
+	</xs:complexType>
+	
+
+	<xs:complexType name="load">
+		<xs:sequence>
+			<xs:element name="loadDetails" type="tns:loadBase"
+				maxOccurs="1" minOccurs="1">
+			</xs:element>
+			<xs:element name="shippingUnits" type="tns:shippingUnitBase"
+				maxOccurs="unbounded" minOccurs="0">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

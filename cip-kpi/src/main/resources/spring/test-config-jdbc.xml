@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<import resource="data-source-config.xml" />	
+	 <context:component-scan base-package="com.cts.cip"/>
+	<!-- enables scanning for @Transactional annotations -->
+    <tx:annotation-driven/>
+   
+    <!-- <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/> -->
+    <!-- For Local Work space to run -->
+		<!-- <context:property-placeholder location="classpath:properties/cip-master-data-access.properties"
+			system-properties-mode="OVERRIDE" /> -->
+		<!-- When deploy on server -->
+	<context:property-placeholder location="file:///${app.env.config}/properties/cip-kpi-data-access.properties" 
+	system-properties-mode="OVERRIDE"/>
+	
+	<beans profile="test-jpa">
+		<context:annotation-config/>
+        <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="namedParameterJdbcTemplate" >
+		   <!-- <property name="dataSource" ref="prodDataSource"></property> -->
+		   <constructor-arg ref="testDataSource" />
+		</bean>
+		<!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+              p:dataSource-ref="testDataSource">
+            <property name="jpaVendorAdapter">
+                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+                      p:database="${jpa.test.database}" p:showSql="${jpa.showSql}"/>
+            </property>
+           <property name="packagesToScan" value="com.cts.cip.core.repository"/>
+            <property name="packagesToScan">
+		         <array>
+		              <value>com.cts.cip.kpi</value>
+		         </array>
+    		 </property>  
+        </bean>
+        Transaction manager for a single JPA EntityManagerFactory (alternative to JTA)
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+              p:entityManagerFactory-ref="entityManagerFactory"/> -->
+        
+    </beans>
+
+	
+</beans>

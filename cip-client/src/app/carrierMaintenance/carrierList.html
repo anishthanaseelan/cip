@@ -1,0 +1,31 @@
+<div class="row cip-header">
+    <div class="row">
+        <div class='col-md-6 col-sm-6 col-xs-6'>
+            <h2 ng-i18next="Carrier_Maintenance_Full"></h2>
+            <br/>
+        </div>
+    </div>
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="main-box clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div id="grid"
+                             ui-grid="carrierListCtrl.gridOptions"
+                             class="grid"
+                             ui-grid-edit
+                             ui-grid-pagination
+                             ui-grid-resizecolumns
+                             ui-grid-move-columns
+                             ui-grid-autoresize
+                             ui-grid-selection
+                             ui-grid-expandable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

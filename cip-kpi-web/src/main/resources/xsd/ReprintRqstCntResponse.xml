@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ReprintRequestsReceived xmlns:tns="http://www.yourcompany.com/retail/cip/TotalReprintReqRecived" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.yourcompany.com/retail/cip/TotalReprintReqRecived ReprintRqstCntResponse.xsd ">
+  <tns:count>0</tns:count>
+</tns:ReprintRequestsReceived>

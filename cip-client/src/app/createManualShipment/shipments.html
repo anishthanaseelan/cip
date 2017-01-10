@@ -1,0 +1,212 @@
+﻿<div class="row cip-header">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <span us-spinner="{radius:30, width:8, length: 16}"></span>
+
+            <form role="form" name="shipmentsForm" novalidate>
+                <uib-accordion ng-init="searchEnabled = false">
+                    <div uib-accordion-group class="panel-default" is-open="searchEnabled">
+                        <uib-accordion-heading>
+                            <span>{{'Click_To_Search_Full' | i18next}}</span>
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-up': searchEnabled, 'glyphicon-chevron-down': !searchEnabled}"></i>
+                        </uib-accordion-heading>
+
+                        <div class="row padding-p7" style="padding-top: 10px;">
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0 padding-bottom-p10">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Tracking_Nbr_Full"></span>
+                                </label>
+                <span class="col-xs-3 col-sm-3 col-md-3 padding-right-p0">
+                    <select class="form-control padding-right-p0"
+                            ng-model="dashBoardCtrl.selectedTrackingOption">
+                        <option value="">{{'Equal_To_Full' | i18next}}</option>
+                    </select>
+                </span>
+                <span class="col-xs-4 col-sm-4 col-md-4 padding-right-p0">
+                <input class="form-control padding-right-p0"
+                       type="text"
+                       sd-allow-pattern="(^[0-9A-Za-z]+$)"
+                       limit-to="30"
+                       ng-model="shipmentsCtrl.searchFields.trackingNumber"
+                       placeholder="">
+                </span>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Ship_Ref_ID_Full"></span>
+                                </label>
+                        <span class="col-xs-3 col-sm-3 col-md-3 padding-right-p0">
+                            <select class="form-control padding-right-p0"
+                                    ng-model="dashBoardCtrl.selectedShipRefOption"
+                                    >
+                                <option value="">{{'Equal_To_Full' | i18next}}</option>
+                                <!--<option value="">{{'Contains_Full' | i18next}}</option>-->
+                            </select>
+                        </span>
+                <span class="col-xs-4 col-sm-4 col-md-4 padding-right-p0">
+                <input class="form-control padding-right-p0"
+                       type="text"
+                       sd-allow-pattern="(^[0-9a-zA-Z]+$)"
+                       limit-to="30"
+                       ng-model="shipmentsCtrl.searchFields.shipmentReferenceId"
+                       placeholder="">
+                </span>
+                            </div>
+                        </div>
+                        <div class="row padding-p7">
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0 padding-bottom-p10">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Carrier_Full"></span>
+                                </label>
+                        <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0">
+                        <select class="form-control select w-100 dd-border"
+                                ng-options=" carrier.id + ' -' + carrier.name for carrier in shipmentsCtrl.carrierList"
+                                ng-model="shipmentsCtrl.searchFields.selectedCarrier"
+                                ng-change="shipmentsCtrl.selectCarrier(shipmentsCtrl.searchFields.selectedCarrier)">
+                            <option value="">{{'Select_Carrier_Full' | i18next}}</option>
+                        </select>
+                        </span>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Type"></span>
+                                    <span ng-i18next="Carrier Service"></span>
+                                </label>
+                <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0">
+                    <select class="form-control select w-100 dd-border"
+                            name="ServiceType"
+                            ng-options=" carrierServiceInfo.code +' - '+ carrierServiceInfo.name for carrierServiceInfo in shipmentsCtrl.carrierServiceInfoList"
+                            ng-model="shipmentsCtrl.searchFields.selectedCarrierService"
+                            ng-change="shipmentsCtrl.selectCarrierService(shipmentsCtrl.searchFields.selectedCarrierService)">
+                        <option value="">{{'Select_Carrier_Service_Full' | i18next}}</option>
+                    </select>
+                </span>
+                            </div>
+                        </div>
+                        <div class="row padding-p7">
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0 padding-bottom-p10">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Shipment_Status_Full"></span>
+                                </label>
+                            <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0">
+                                <select class="form-control select w-100 dd-border"
+                                        ng-options="shipmentStatus.desc for shipmentStatus in shipmentsCtrl.shipmentStatusList"
+                                        ng-model="shipmentsCtrl.searchFields.selectedShipmentStatus"
+                                        ng-change="shipmentsCtrl.selectShipmentStatus(shipmentsCtrl.searchFields.selectedShipmentStatus)">
+                                    <option value="">{{'Select_Status_Full' | i18next}}</option>
+                                </select>
+                            </span>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Load_Status_Full"></span>
+                                </label>
+                            <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0">
+                                <select class="form-control select w-100 dd-border"
+                                        ng-options="loadStatus.desc for loadStatus in shipmentsCtrl.loadStatusList"
+                                        ng-model="shipmentsCtrl.searchFields.selectedLoadStatus"
+                                        ng-change="shipmentsCtrl.selectLoadStatus(shipmentsCtrl.searchFields.selectedLoadStatus)">
+                                    <option value="">{{'Select_Status_Full' | i18next}}</option>
+                                </select>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row padding-p7">
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0 padding-bottom-p10">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Shipment_Date_Range_Full"></span>
+                                </label>
+                <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0 shipmentDate">
+                    <cip-date-range-selector selected-date-range='shipmentsCtrl.searchFields.dateRange.caption'
+                                             opens="center"
+                                             ranges="shipmentsCtrl.ranges"
+                                             start-date="shipmentsCtrl.searchFields.dateRange.fromDate"
+                                             end-date="shipmentsCtrl.searchFields.dateRange.toDate"
+                                             linked-calendars="true">
+                </span>
+                                </span>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0 padding-bottom-p10">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Load_Reference_Full"></span>
+                                </label>
+                        <span class="col-xs-3 col-sm-3 col-md-3 padding-right-p0">
+                            <select class="form-control padding-right-p0"
+                                    ng-model="dashBoardCtrl.selectedLoadRefOption"
+                                    >
+                                <option value="">{{'Equal_To_Full' | i18next}}</option>
+                            </select>
+                        </span>
+                <span class="col-xs-4 col-sm-4 col-md-4 padding-right-p0">
+                <input class="form-control padding-right-p0"
+                       type="text"
+                       ng-model="shipmentsCtrl.searchFields.loadReference"
+                       sd-allow-pattern="(^[0-9a-zA-Z]+$)"
+                       limit-to="30"
+                       placeholder="">
+                </span>
+                            </div>
+                        </div>
+                        <div class="row padding-p7">
+
+                            <div class="col-xs-12 col-sm-5 col-md-5 padding-p0">
+                                <label class="labelCustomize col-xs-4 col-sm-5 col-md-5 padding-right-p0">
+                                    <span ng-i18next="Node_Full"></span>
+                                </label>
+                            <span class="col-xs-7 col-sm-7 col-md-7 padding-right-p0">
+                                <select class="form-control select w-100 dd-border"
+                                        ng-options="Node.id for Node in shipmentsCtrl.nodeList"
+                                        ng-model="shipmentsCtrl.searchFields.selectedNode"
+                                        ng-change="shipmentsCtrl.selectNode(shipmentsCtrl.searchFields.selectedNode)">
+                                    <option value="">{{'Select_Node_Full' | i18next}}</option>
+                                </select>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row padding-p7">
+                            <div class="col-md-offset-6 col-sm-offset-7 col-xs-offset-5 col-xs-2 col-sm-2 col-md-2 padding-right-p0">
+                                <button class="btn btn-primary-outline padding-p10 btn-cancel ng-binding margin-right-m40"
+                                        value="search"
+                                        ng-click="shipmentsCtrl.searchFields = {};shipmentsCtrl.clear()">
+                                    {{'Clear_Full' | i18next}}
+                                </button>
+                            </div>
+                            <div class="col-sm-offset-1 col-md-offset-0 col-xs-offset-3 col-xs-2 col-sm-2 col-md-2">
+                                <button class="btn btn-primary padding-p10 btn-next nodeMaintenanceSearch ng-binding margin-right-m10"
+                                        value="search"
+                                        ng-click="shipmentsForm.$valid && shipmentsCtrl.getSearchShipmentList()">
+                                    {{'Search_Full' | i18next}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion>
+            </form>
+
+            <div class="main-box clearfix">
+                <div class="main-box-body clearfix">
+                    <div id="grid"
+                         ui-grid="shipmentsCtrl.gridOptions"
+                         class="grid"
+                         ui-grid-edit
+                         ui-grid-resizecolumns
+                         ui-grid-move-columns
+                         ui-grid-autoresize
+                         ui-grid-pagination
+                         ui-grid-expandable
+                         ui-grid-selection>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-center" ng-show="true">
+                <ul uib-pagination total-items="shipmentsCtrl.gridOptions.totalItems"
+                    ng-model="shipmentsCtrl.gridOptions.paginationCurrentPage"
+                    max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" rotate="false"
+                    force-ellipses="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                    last-text="&raquo;"></ul>
+            </div>
+        </div>
+    </div>
+</div>

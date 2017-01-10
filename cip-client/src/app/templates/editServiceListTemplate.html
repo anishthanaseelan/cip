@@ -1,0 +1,116 @@
+<div class="ui-grid-bottom-adjust editServiceListBgColor" ng-controller="editCarrierController as editCarrierCtrl">
+    <ng-form name="editCarrierRulesInfo" novalidate="novalidate">
+        <div class="row margin-s20">
+            <div toggle-class="row-expanded"
+                 ng-click="row.isExpanded =!row.isExpanded">
+                <span class="upArrow glyphicon glyphicon-chevron-up"></span>
+                <h4 class="serviceManagementHeader" ng-i18next="Service_Management_Full"></h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-p5">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 labelCustomize">
+                        <span ng-i18next="SCAC_Full"></span>
+                    </label>
+
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text"
+                               name="SCAC"
+                               class="form-control"
+                               ng-model="row.entity.subData.scac">
+                    </div>
+                        </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-p5">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 labelCustomize padding-left-p0">
+                            <span ng-i18next="Contact_Name_Full"></span>
+                        </label>
+
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" name="contactName"
+                                   class="form-control ng-pristine ng-valid ng-not-empty ng-touched"
+                                   ng-model="row.entity.subData.locationPrimaryContactName">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 labelCustomize">
+                            <span ng-i18next="Email_Full"></span>
+                        </label>
+
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="email" name="contactEmail"
+                                   class="form-control ng-pristine ng-untouched ng-valid ng-not-empty"
+                                   ng-model="row.entity.subData.locationPrimaryContactEmail">
+                            <span class="updateDetailsError padding-left-p0 margin-left-m0"
+                                  ng-show="editCarrierRulesInfo.contactEmail.$error.email">
+                                {{'Email_not_Valid_Full' | i18next}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-p5">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 labelCustomize">
+                        <span ng-i18next="Phone_Full"></span>
+                    </label>
+
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text"
+                               name="phone"
+                               ng-maxlength="10"
+                               ng-minlength="10"
+                               sd-allow-pattern="\d"
+                               limit-to="10"
+                               class="form-control"
+                               ng-model="row.entity.subData.locationPrimaryContactNumber">
+                        <span class="updateDetailsError padding-left-p0 margin-left-m0"
+                              ng-show="((editCarrierRulesInfo.phone.$error.minlength || editCarrierRulesInfo.phone.$error.maxlength) && editCarrierRulesInfo.phone.$dirty)">
+                                {{'Valid_Phone_number_is_required_Full' | i18next}}
+                            </span>
+                    </div>
+                </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row weightDimensionsDiv" ng-show="row.entity.subData.ruleDefinitions.length > 0">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div ng-repeat="ruleDefinition in row.entity.subData.ruleDefinitions">
+                        <h4>{{ruleDefinition.ruleTypeName}}</h4>
+                        <div ng-repeat="rule in ruleDefinition.ruleDefintionInfos">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-p12">
+                        <label class="col-lg-5 col-md-5 col-xs-12 col-sm-12 labelCustomize alignCenter">{{rule.fieldDisplayName}}</label>
+                        <div class="col-lg-7 col-md-7 col-xs-8 col-sm-8">
+                            <input type="text"
+                                   class="form-control"
+                                   name="rule.fieldName"
+                                   placeholder="0"
+                                   ng-model="rule.fieldValue"
+                                   sd-allow-pattern="\d"
+                                   required/>
+                        </div>
+                            </div>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </ng-form>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 margin-b10">
+            <div class="col-md-3 col-sm-4 col-xs-6 col-md-offset-6">
+                <button class="btn btn-primary-outline padding-p10 btn-cancel" value="cancel"
+                        ng-click="row.isExpanded =!row.isExpanded"
+                        ng-click="editCarrierCtrl.cancelUpdatedServiceList()">
+                    {{'Cancel_Full' | i18next}}
+                </button>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6">
+                <button class="btn btn-primary padding-p10 btn-next pull-left" value="Save"
+                        ng-click="editCarrierCtrl.saveEditedCarrier(row.entity.subData); row.isExpanded =!row.isExpanded;">
+                    {{'Save_Full' | i18next}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

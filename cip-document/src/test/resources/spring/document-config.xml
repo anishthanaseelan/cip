@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:property-placeholder location="classpath:properties/document.properties" system-properties-mode="OVERRIDE"/>
+	
+	<context:component-scan base-package="com.cts.cip"/>
+	
+    <tx:annotation-driven/>
+    
+     <bean id="masterService" class="com.cts.cip.doc.services.MasterServiceImpl">     
+    	<property name="resource" value="${template.service.url}"/>
+    </bean>
+    
+    <bean id="documentEngineService" class="com.cts.cip.doc.services.DocumentEngineServiceImpl"> 
+    	<property name="masterService" ref="masterService"/> 
+    	<property name="zplEngine" ref="zplDocumentGenerator"/>
+    	<property name="fopEngine" ref="fopDocumentGenerator"/>   
+    	<property name="labelPath" value="${document.generatedlabel.path}"/>
+    	<property name="labelURL" value="${document.generatedlabel.url}"/>
+    </bean>
+    
+     <bean id="zplDocumentGenerator" class="com.cts.cip.doc.engine.ZPLDocumentGeneratorImpl">     
+     	<property name="transformerFactory" ref="transformerFactory"/>
+     </bean>
+     
+     <bean id="fopDocumentGenerator" class="com.cts.cip.doc.engine.FOPDocumentGeneratorImpl">     
+     	<property name="fopFactory" ref="fopFactory"/>
+     </bean>    
+    
+    <bean id="transformerFactory" class="javax.xml.transform.TransformerFactory"
+		factory-method="newInstance" />
+		
+	<bean id="upsShippingLabel" factory-bean="transformerFactory"
+		factory-method="newTransformer">
+		<constructor-arg ref="upsStylesheetSource" />
+	</bean>
+	
+	<bean id="upsStylesheetSource" class="javax.xml.transform.stream.StreamSource">
+		<constructor-arg ref="upsTemplatefile" />
+	</bean>
+	
+	<bean id="upsTemplatefile" class="java.io.File">
+		<constructor-arg index="0" type="java.lang.String" value="${ups.templatePath}" />
+	</bean>	
+
+
+	<bean id="sampleShippingLabel" factory-bean="transformerFactory"
+		factory-method="newTransformer">
+		<constructor-arg ref="sampleStylesheetSource" />
+	</bean>
+
+	<bean id="sampleStylesheetSource" class="javax.xml.transform.stream.StreamSource">
+		<constructor-arg ref="sampleTemplatefile" />
+	</bean>
+	
+	<bean id="sampleTemplatefile" class="java.io.File">
+		<constructor-arg index="0" type="java.lang.String"
+			value="${sample.templatePath}" />
+	</bean>
+	
+	<bean id="sampleInput" class="javax.xml.transform.stream.StreamSource">
+		<constructor-arg ref="sampleInputfile" />
+	</bean>
+	
+	<bean id="sampleInputfile" class="java.io.File">
+		<constructor-arg index="0" type="java.lang.String"
+			value="${sample.InputPath}" />
+	</bean> 
+	
+	
+	 <bean id="templateRootURI" class="java.net.URI">
+   		 <constructor-arg value="${root.templatePath}"  />
+ 	 </bean> 	
+ 	 	 
+ 	 <bean id="defaultConfigurationBuilder" class="org.apache.avalon.framework.configuration.DefaultConfigurationBuilder"/>
+ 	 
+ 	 <bean id="configFile" class="java.io.File">
+		<constructor-arg index="0" type="java.lang.String" value="${fop.configFile}" />
+	</bean>
+ 	 
+ 	 <bean id="fopConfig" factory-bean="defaultConfigurationBuilder" factory-method="buildFromFile">
+		<constructor-arg ref="configFile" /> 
+	</bean>
+	
+	<bean id="fopFactoryBuilder" class="org.apache.fop.apps.FopFactoryBuilder">
+		<constructor-arg index="0" type="java.net.URI" ref="templateRootURI" />
+		<property name="configuration" ref="fopConfig"/>
+	</bean>
+ 		
+	<bean id="fopFactory" factory-bean="fopFactoryBuilder"
+		factory-method="build"/>		
+		
+	<!--<bean id="foUserAgent" factory-bean="fopFactory"
+		factory-method="newFOUserAgent"/> -->
+ 
+</beans>

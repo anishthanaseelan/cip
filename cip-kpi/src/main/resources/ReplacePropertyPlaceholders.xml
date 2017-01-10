@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Jun 21, 2016 6:23:21 AM                                                        
+
+     project  :PlaceholderReplacer 
+     description :  Replace the placeholders with values
+                   
+     256132                                                                
+     ====================================================================== -->
+	<project name="PlaceholderReplacer" default="init">
+	<property name="proj.base.dir" value="." />
+	<property name="propsOutputDir"  value="OutputDir/properties"/>
+	<property name="logbackOutputDir" value="OutputDir"/>
+
+	<property name="filterFile" value="${propsFile}" />
+    <description>
+            Replace the placeholders with values
+    </description>
+
+    <!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="init" depends="clean" >
+    	<mkdir dir="${logbackOutputDir}"/>
+    	<mkdir dir="${propsOutputDir}"/>
+    	
+    	<copy todir="${propsOutputDir}">
+    		<fileset  dir="${proj.base.dir}">
+    			<include name="cip-kpi-data-access.properties"/>	
+    		</fileset>
+    		<filterset begintoken="{" endtoken="}" filtersfile="${filterFile}">
+    		   
+    		</filterset>
+    	</copy>
+    	
+    	<copy todir="${logbackOutputDir}">
+    		<fileset  dir="${proj.base.dir}">
+    			<include name="logback.xml"/>	
+    		</fileset>
+    		<filterset begintoken="{" endtoken="}" filtersfile="${filterFile}">
+    		</filterset>
+    	</copy>
+    	
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: clean                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="clean">
+    	<delete dir="${propsOutputDir}"/>
+		<delete dir="${logbackInputLoc}"/>
+    </target>
+
+</project>

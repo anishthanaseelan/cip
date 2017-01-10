@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/jdbc
+         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+         http://www.springframework.org/schema/jee
+         http://www.springframework.org/schema/jee/spring-jee.xsd">
+ 
+		<!-- SWAGGER Configuration START -->
+	    <bean id="apiListingResource" class="io.swagger.jaxrs.listing.ApiListingResource"/>
+	    <bean id="swaggerSerializers" class="io.swagger.jaxrs.listing.SwaggerSerializers" scope="singleton"/>
+	
+	    <!-- Swagger Configuration -->
+	    <bean id="beanConfig" class="io.swagger.jaxrs.config.BeanConfig">
+	        <property name="schemes" value="http" />
+	        <property name="resourcePackage" value="com.cts.cip.core.resources"/>
+	        <property name="version" value="1.0.0"/>
+	        <property name="basePath" value="/cip-core"/>
+	        <property name="title" value="CIP Swagger Documentation"/>
+	        <property name="description" value="CIP Swagger Documentation"/>
+	        <property name="contact" value="CTS_DEP_CIP_Dev@yourcompany.com"/>
+	        <property name="license" value="Apache 2.0"/>
+	        <property name="licenseUrl" value="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+	        <property name="scan" value="true"/>
+	    </bean>
+		<!-- SWAGGER Configuration END -->   
+</beans>

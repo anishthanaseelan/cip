@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:createShippingUnitRequest requestTransactionID="" xmlns:tns="http://www.cts.com/cip/CreateShippingUnitRequest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cts.com/cip/CreateShippingUnitRequest CreateShippingUnitRequest.xsd ">
+  <tns:shippingUnit>
+    <tns:shippingUnitBase type="CARTON">
+      <id>0</id>
+      <transactionId>123213123</transactionId>
+      <referenceID>100000001003</referenceID>
+      <description>description</description>
+      <state>INITIATED</state>
+    </tns:shippingUnitBase>
+    <tns:weightAndDimensions>
+      <weight weightUOM="LBS">
+        <weight>10.0</weight>
+      </weight>
+      <dimensions dimensionUOM="IN">
+        <length>11.0</length>
+        <width>12.0</width>
+        <height>13.0</height>
+      </dimensions>
+    </tns:weightAndDimensions>
+    <tns:shipperDetails>
+      <tns:billingAccountID>735911007</tns:billingAccountID>
+      <tns:meterID>280569</tns:meterID>
+      <tns:shipperServiceType>
+        <tns:shipperServiceTypeID>21</tns:shipperServiceTypeID>
+        <tns:shipperServiceTypeCode>21</tns:shipperServiceTypeCode>
+        <tns:shipperServiceTypeName>FedExOvernight</tns:shipperServiceTypeName>
+      </tns:shipperServiceType>
+      <tns:shipperAddress>
+        <individualName>Test1</individualName>
+        <companyName>yourcompany </companyName>
+        <addressLine1>3315 SW I St</addressLine1>
+        <city>Bentonville</city>
+        <state>AR</state>
+        <country>US</country>
+        <countryCode>US</countryCode>
+        <zipCode>72712</zipCode>
+        <phoneNumber>1234567890</phoneNumber>
+        <faxNumber>1234567890</faxNumber>
+        <emailAddress>aaa@yahoo.com</emailAddress>
+      </tns:shipperAddress>
+    </tns:shipperDetails>
+    <tns:order>
+      <tns:orderNumber>123456123</tns:orderNumber>
+      <tns:poNumber>323434345</tns:poNumber>
+      <tns:customerMembershipNumber>123</tns:customerMembershipNumber>
+      <tns:distributionCenterID>1001</tns:distributionCenterID>
+      <tns:businessUnitID>7</tns:businessUnitID>
+      <tns:trailerNumber>12345-345</tns:trailerNumber>
+      <tns:carrierTrailerNumber>123456</tns:carrierTrailerNumber>
+      <tns:trasactionControlNumber>123</tns:trasactionControlNumber>
+      <tns:datePlannedShipment>2016-05-20</tns:datePlannedShipment>
+      <tns:waveNumber>10</tns:waveNumber>
+      <tns:asnNumber>3434343434</tns:asnNumber>
+      <tns:shippingOptions>
+        <tns:specialServiceType>RESIDENTIAL</tns:specialServiceType>
+        <tns:specialInstructions>specialInstructions</tns:specialInstructions>
+        <tns:hazardousMaterial>
+          <tns:code>12</tns:code>
+          <tns:description>Lithium Batteris</tns:description>
+        </tns:hazardousMaterial>
+      </tns:shippingOptions>
+      <tns:billingAddress>
+        <individualName>Test1</individualName>
+        <companyName>yourcompany </companyName>
+        <addressLine1>3315 SW I St</addressLine1>
+        <addressLine2></addressLine2>
+        <addressLine3></addressLine3>
+        <addressLine4></addressLine4>
+        <city>Bentonville</city>
+        <state>AR</state>
+        <country>US</country>
+        <countryCode>US</countryCode>
+        <zipCode>72712</zipCode>
+        <phoneNumber>1234567890</phoneNumber>
+        <faxNumber>1234567890</faxNumber>
+        <emailAddress>aaa@yahoo.com</emailAddress>
+      </tns:billingAddress>
+      <tns:deliveryToAddress>
+        <individualName>Test</individualName>
+        <companyName>yourcompany </companyName>
+        <addressLine1>3315 SW I St</addressLine1>
+        <addressLine2></addressLine2>
+        <addressLine3></addressLine3>
+        <addressLine4></addressLine4>
+        <city>Bentonville</city>
+        <state>AR</state>
+        <country>US</country>
+        <countryCode>US</countryCode>
+        <zipCode>72712</zipCode>
+        <phoneNumber>1234567890</phoneNumber>
+        <faxNumber>1234567890</faxNumber>
+        <emailAddress>aaa@yahoo.com</emailAddress>
+      </tns:deliveryToAddress>
+      <tns:returnAddress>
+         <individualName>Test1</individualName>
+        <companyName>yourcompany </companyName>
+        <addressLine1>3315 SW I St</addressLine1>
+        <addressLine2></addressLine2>
+        <addressLine3></addressLine3>
+        <addressLine4></addressLine4>
+        <city>Bentonville</city>
+        <state>AR</state>
+        <country>US</country>
+        <countryCode>US</countryCode>
+        <zipCode>72712</zipCode>
+        <phoneNumber>1234567890</phoneNumber>
+        <faxNumber>1234567890</faxNumber>
+        <emailAddress>aaa@yahoo.com</emailAddress>
+      </tns:returnAddress>
+    </tns:order>
+    <tns:invoiceDetails>
+      <tns:id>110</tns:id>
+      <tns:salesTax currency="USD">
+        <amount>10.0</amount>
+      </tns:salesTax>
+      <tns:shippingAndHandlingCharges currency="USD">
+        <amount>10.0</amount>
+      </tns:shippingAndHandlingCharges>
+      <tns:totalOrderItemsCost currency="USD">
+        <amount>110.0</amount>
+      </tns:totalOrderItemsCost>
+      <tns:shipmentTotalCost currency="USD">
+        <amount>120.0</amount>
+      </tns:shipmentTotalCost>
+      <tns:items>
+        <tns:sequenceNumber>1</tns:sequenceNumber>
+        <tns:quantity>2</tns:quantity>
+        <tns:vasCode>0.0</tns:vasCode>
+        <tns:itemNumber>1</tns:itemNumber>
+        <tns:description>Itemdescription</tns:description>
+        <tns:unitPrice currency="USD">
+          <amount>10.0</amount>
+        </tns:unitPrice>
+        <tns:totalPrice currency="USD">
+          <amount>100.0</amount>
+        </tns:totalPrice>
+         <tns:giftMessages>
+          <tns:giftMessage>Gift message</tns:giftMessage>
+        </tns:giftMessages>
+      </tns:items>
+    </tns:invoiceDetails>
+    <tns:requestedOutputFileFormat>PDF</tns:requestedOutputFileFormat>
+    <tns:carrierReference>
+      <tns:id>1</tns:id>
+      <tns:type>po</tns:type>
+    </tns:carrierReference>
+    <tns:trackingNubmber></tns:trackingNubmber>
+           <tns:base64LabelContentRequired>No</tns:base64LabelContentRequired>  
+    <tns:base64LabelContent></tns:base64LabelContent>
+
+    <tns:labelPath></tns:labelPath>
+  </tns:shippingUnit>
+</tns:createShippingUnitRequest>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<import resource="data-source-config.xml" />	
+	 <context:component-scan base-package="com.cts.cip"/>
+	<!-- enables scanning for @Transactional annotations -->
+    <tx:annotation-driven/>
+    
+    <import resource="swagger-config.xml" />
+   
+    <!-- <context:property-placeholder location="classpath:spring/data-access.properties" system-properties-mode="OVERRIDE"/> -->
+    <!-- For Local Work space to run -->
+	<!-- <context:property-placeholder location="classpath:properties/cip-kpi-data-access.properties"
+		system-properties-mode="OVERRIDE" /> -->
+		<!-- When deploy on server -->
+	<context:property-placeholder location="classpath:properties/cip-kpi-data-access.properties" 
+	system-properties-mode="OVERRIDE"/>	
+	
+	<beans profile="prod-jpa">
+		<context:annotation-config/>
+        <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="namedParameterJdbcTemplate">
+		   <constructor-arg ref="prodDataSource" />
+		</bean>
+		
+		<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		   <constructor-arg ref="prodDataSource" />
+		</bean>
+        
+        <!-- SWAGGER Configuration START -->
+	    <bean id="apiListingResource" class="io.swagger.jaxrs.listing.ApiListingResource"/>
+	    <bean id="swaggerSerializers" class="io.swagger.jaxrs.listing.SwaggerSerializers" scope="singleton"/>
+	
+	    <!-- Swagger Configuration -->
+	    <bean id="beanConfig" class="io.swagger.jaxrs.config.BeanConfig">
+	        <property name="schemes" value="http" />
+<!-- 	        <property name="filterClass" value="io.swagger.sample.util.ApiAuthorizationFilterImpl"/> -->
+	        <property name="resourcePackage" value="com.cts.cip.kpi.resources"/>
+	        <property name="version" value="1.0.0"/>
+	        <property name="host" value="localhost:8085"/>
+	        <property name="basePath" value="/cip-core"/>
+	        <property name="title" value="CIP Swagger Documentation"/>
+	        <property name="description" value="CIP Swagger Documentation"/>
+	        <property name="contact" value="CTS_DEP_CIP_Dev@yourcompany.com"/>
+	        <property name="license" value="Apache 2.0"/>
+	        <property name="licenseUrl" value="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+	        <property name="scan" value="true"/>
+	    </bean>
+		<!-- SWAGGER Configuration END --> 
+        
+    </beans>
+    
+   
+
+	
+</beans>

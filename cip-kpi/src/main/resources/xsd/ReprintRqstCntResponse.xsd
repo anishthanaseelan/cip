@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.yourcompany.com/retail/cip/TotalReprintReqRecived" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.yourcompany.com/retail/cip/TotalReprintReqRecived">
+
+    <element name="ReprintRequestsReceived" type="tns:ReprintRequest"></element>
+    
+    <complexType name="SimpleCount">
+    	<sequence>
+    		<element name="count" minOccurs="1" maxOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxInclusive value="99999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ReprintRequest">
+    	<sequence>
+    		<element name="count" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxInclusive value="999999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aspo:avgShipmentsPerOrder xmlns:aspo="http://www.example.org/AvgShipmentsPerOrder" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/AvgShipmentsPerOrder ShipmntsPerOrdrResponse.xsd ">
+  <aspo:average>0.0</aspo:average>
+</aspo:avgShipmentsPerOrder>

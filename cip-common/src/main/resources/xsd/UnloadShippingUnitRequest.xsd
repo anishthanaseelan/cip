@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.cts.com/cip/Common"
+	targetNamespace="http://www.cts.com/cip/UnloadShippingUnitRequest" 
+	xmlns:tns="http://www.cts.com/cip/UnloadShippingUnitRequest">	
+	
+	<!-- Import the dependency xsds -->
+	<xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+
+	<xs:element name="UnloadShippingUnitRequest">
+		<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="load" type="common:loadBase" 
+    				minOccurs = "0" maxOccurs = "1"/>
+    			<xs:element name="shippingBaseUnits" type="common:shippingUnitBase" minOccurs = "1" 
+    				maxOccurs="unbounded"/>
+    		</xs:sequence>
+    		<xs:attribute name="requestTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+  	</xs:element>
+</xs:schema>

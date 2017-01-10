@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.yourcompany.com/retail/cip/PendingManifest" xmlns:tns="http://www.yourcompany.com/retail/cip/PendingManifest" elementFormDefault="qualified" xmlns:Q1="http://www.yourcompany.com/retail/cip/KPIGenericCriteria">
+
+
+    <import schemaLocation="SUKPIFilterCriteriaRequest.xsd" namespace="http://www.yourcompany.com/retail/cip/KPIGenericCriteria"></import>
+    <complexType name="TimelineDataUnit">
+    	<sequence>
+    		<element name="xValue1" minOccurs="1" maxOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="-999999999"></minInclusive>
+    					<maxInclusive value="999999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="yValue" type="Q1:DateTimeRange" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="yCaption" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    
+
+    <complexType name="TimeLineDataSet">
+    	<sequence>
+    		<element name="totalCount" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxInclusive value="999999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="totalOnCurrentTimeLine" maxOccurs="1" minOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxInclusive value="999999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="dataSet" type="tns:DataSet"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</element>
+
+    	</sequence>
+    </complexType>
+
+    <complexType name="DataSet">
+    	<sequence>
+    		<element name="sequence" minOccurs="1" maxOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<maxExclusive value="999999999"></maxExclusive>
+    					<minExclusive value="0"></minExclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="dataUnit" type="tns:TimelineDataUnit" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="pendingManifest" type="tns:PendingManifest"></element>
+
+    <complexType name="PendingManifest">
+    	<sequence>
+    		<element name="timelineDataSet" type="tns:TimeLineDataSet" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+		
+	<context:component-scan base-package="com.cts.cip"/>	
+    <tx:annotation-driven/>   
+    <context:annotation-config />
+    
+    <!-- import the carrier definition -->
+	<import resource="data-source-config.xml" />
+	<import resource="swagger-config.xml" />	
+	<import resource="kpi-repo-config.xml" />
+	<import resource="kpi-core-config.xml" />
+	
+	
+	<!-- CIP KPI business object beans -->
+	
+	<bean id="shippingListService" class="com.cts.cip.kpi.bo.core.ShippingListServiceImpl">		
+		<property name="shippingUnitRepo" ref="shippingUnitRepoKPI"></property>
+		
+	</bean>
+   
+   <bean id="summaryService" class="com.cts.cip.kpi.bo.core.SummaryServiceImpl">		
+		<property name="summaryRepo" ref="summaryRepo"></property>
+	</bean>
+   
+   
+    
+	<context:property-placeholder location="classpath:properties/cip-kpi-data-access.properties" 
+	system-properties-mode="OVERRIDE"/>	
+	
+		
+</beans>

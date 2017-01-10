@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cts.com/cip/CreateShippingUnitResponse" 
+	xmlns:tns="http://www.cts.com/cip/CreateShippingUnitResponse"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:common="http://www.cts.com/cip/Common"
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+
+	<!-- Import the dependency xsds -->
+	 <xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+	
+	<xs:element name="CreateShippingUnitResponse">
+		<xs:complexType>
+    		<xs:sequence>
+       			<xs:element name="status" type="common:status"/>
+       			<xs:element name="shippingUnit" type="common:shippingUnitBase"/>
+			    <xs:element name="serviceType" type="common:stringType"/>
+			    <xs:element name="trackingNumber" type="common:stringType"/>
+       			<xs:element name="documents" type="common:shippingDocument" minOccurs="1" maxOccurs="unbounded"/>
+       			<xs:element name="totalAmount" type = "common:price"/>
+    		</xs:sequence>
+    		<xs:attribute name="responseTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+	</xs:element>
+    
+</xs:schema>

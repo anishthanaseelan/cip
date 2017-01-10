@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:labelsCreated xmlns:tns="http://www.yourcompany.com/retail/cip/TotalReqRecivedResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.yourcompany.com/retail/cip/TotalReqRecivedResponse LablesCreatedResponse.xsd ">
+  <tns:total>
+    <tns:count>0</tns:count>
+  </tns:total>
+  <tns:carriers>
+    <tns:carrier>
+      <tns:id>1</tns:id>
+      <tns:refId>XXYY</tns:refId>
+      <tns:count>0</tns:count>
+    </tns:carrier>
+    <tns:carrier>
+      <tns:id>5</tns:id>
+      <tns:refId>YYZZ</tns:refId>
+      <tns:count>8</tns:count>
+    </tns:carrier>
+  </tns:carriers>
+</tns:labelsCreated>

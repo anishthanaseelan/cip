@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.yourcompany.com/retail/cip/TotalReqRecivedResponse" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.yourcompany.com/retail/cip/TotalReqRecivedResponse">
+
+    <element name="labelsCreated" type="tns:LabelsCreated"></element>
+    
+    <complexType name="SimpleCount">
+    	<sequence>
+    		<element name="count" minOccurs="1" maxOccurs="1">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxInclusive value="999999999"></maxInclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="LabelsCreated">
+    	<sequence>
+    		<element name="total" type="tns:SimpleCount" maxOccurs="1" minOccurs="1"></element>
+    		<element name="carriers" type="tns:CountByCarriers" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="CountByCarriers">
+    	<sequence>
+    		<element name="carrier" type="tns:CountByCarrier" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="CountByCarrier">
+    	<sequence>
+    		<element name="id" maxOccurs="1" minOccurs="0">
+    			<simpleType>
+    				<restriction base="int">
+    					<minInclusive value="0"></minInclusive>
+    					<maxExclusive value="999999999"></maxExclusive>
+    				</restriction>
+    			</simpleType>
+    		</element>
+    		<element name="refId" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="count" type="int" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/AvgShipmentsPerOrder" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:aspo="http://www.example.org/AvgShipmentsPerOrder">
+
+    <element name="avgShipmentsPerOrder" type="aspo:ShipmentsPerOrder"></element>
+    
+
+
+    <complexType name="ShipmentsPerOrder">
+    	<sequence>
+    		<element name="average" type="float" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

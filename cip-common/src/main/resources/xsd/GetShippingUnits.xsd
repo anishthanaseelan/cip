@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.cts.com/cip/GetShippingUnits" xmlns:tns="http://www.cts.com/cip/GetShippingUnits" elementFormDefault="qualified" xmlns:Q1="http://www.cts.com/cip/CreateShippingUnitRequest">
+
+   
+    <import schemaLocation="CreateShippingUnitRequest.xsd" namespace="http://www.cts.com/cip/CreateShippingUnitRequest"></import>
+    <element name="shippingUnits" type="tns:ShippingUnits"></element>
+    
+    <complexType name="ShippingUnits">
+    	<sequence>
+    		<element name="shippingUnits" type="tns:ShippingUnitList"
+    			maxOccurs="1" minOccurs="1">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ShippingUnitList">
+    	<sequence>
+    		<element name="shippingUnit" type="Q1:shippingUnit" maxOccurs="unbounded" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

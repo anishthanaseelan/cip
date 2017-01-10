@@ -1,0 +1,223 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 margin-bottom-m-8">
+            <div class="panel panel-default clearfix dashboard-search">
+                <div class="col-sm-12 col-xs-12 col-md-10 col-lg-10">
+                    <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3 dashboard-search padding-left-p30">
+                        <select class="form-control select w-100 dashboard-control"
+                                ng-options="Node.id for Node in dashBoardCtrl.nodeList"
+                                ng-model="dashBoardCtrl.selectedNode"
+                                ng-change="dashBoardCtrl.selectNode(dashBoardCtrl.selectedNode)"
+                                required>
+                            <option value="">{{'ALL_Nodes_Full' | i18next}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3 dashboard-search padding-left-p30">
+                        <select class="form-control select w-100 dashboard-control"
+                                name="Carrier"
+                                ng-options=" carrier.id + ' -' + carrier.name for carrier in dashBoardCtrl.carrierOptions"
+                                ng-model="dashBoardCtrl.selectedCarrierOption"
+                                ng-change="dashBoardCtrl.selectCarrier(dashBoardCtrl.selectedCarrierOption)"
+                                required>
+                            <option value="">{{'ALL_Carriers_Full' | i18next}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3 dashboard-search padding-left-p30">
+                        <select class="form-control select w-100 dashboard-control"
+                                name="ServiceType"
+                                ng-options=" serviceType.code +' - '+serviceType.name for serviceType in dashBoardCtrl.serviceTypeOptions"
+                                ng-model="dashBoardCtrl.selectedServiceTypeOption"
+                                ng-change="dashBoardCtrl.selectServiceType(dashBoardCtrl.selectedServiceTypeOption)"
+                                required>
+                            <option value="">{{'ALL_Services_Full' | i18next}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 dashboard-search padding-left-p30">
+                        <cip-date-range-selector class="no-border dashboard-date dashboard-control"
+                                                 ranges="dashBoardCtrl.ranges"
+                                                 selected-date-range='dashBoardCtrl.dateComponent.caption'
+                                                 opens="center"
+                                                 start-date="dashBoardCtrl.dateComponent.range.fromDate"
+                                                 end-date="dashBoardCtrl.dateComponent.range.toDate"
+                                                 linked-calendars="true">
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-6 col-md-2 col-lg-2 col-xs-offset-3 col-sm-offset-3 col-md-offset-0 col-lg-offset-0">
+                    <div class="refresh-btn w-100" style="min-width: 160px;">
+                        <button class="btn btn-primary refresh-dashboard" ng-click="dashBoardCtrl.populateDashboard();">
+                            {{'Refresh_Full' | i18next}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="main-box clearfix">
+                <div class="main-box-body clearfix ">
+                    <header class="main-box-header clearfix">
+                        <h2 class="pull-left">{{'Overall_Summary_Full' | i18next}}</h2>
+                    </header>
+                    <div class="row ">
+                        <div class="col-lg-15 col-md-15 col-sm-6 col-xs-12 ">
+                            <div class="main-box summary-box borderGray grey-bg">
+                                <i class="fa fa-arrow-circle-down grey-bg"></i>
+                                <span class="headline">{{'Request_Received_Full' | i18next}}</span>
+                                <span class="value">{{dashBoardCtrl.labelCount || '0'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-15 col-md-15 col-sm-6 col-xs-12 ">
+                            <div class="main-box summary-box borderGray grey-bg">
+                                <i class="fa fa-truck grey-bg"></i>
+                                <span class="headline">{{'Shipped_Full' | i18next}}</span>
+                                <span class="value">{{dashBoardCtrl.completedManifestCount || '0'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-15 col-md-15 col-sm-6 col-xs-12 ">
+                            <div class="main-box summary-box borderGray grey-bg">
+                                <i class="fa fa-print grey-bg"></i>
+                                <span class="headline">{{'Reprint_Full' | i18next}}</span>
+                                <span class="value">{{dashBoardCtrl.reprintCount || '0'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-15 col-md-15 col-sm-6 col-xs-12 ">
+                            <div class="main-box summary-box borderGray grey-bg">
+                                <i class="fa fa-exclamation-triangle grey-bg"></i>
+                                <span class="headline">{{'Failed_Full' | i18next}}</span>
+                                <span class="value">{{dashBoardCtrl.errorCount || '0'}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-15 col-md-15 col-sm-6 col-xs-12 ">
+                            <div class="main-box summary-box borderGray grey-bg">
+                                <i class="fa fa-times-circle grey-bg"></i>
+                                <span class="headline">{{'Cancelled_Full' | i18next}}</span>
+                                <span class="value">{{dashBoardCtrl.cancelledCount || '0'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="pendingBarChart">
+            <div class="main-box summary-box grey-bg">
+                <header class="main-box-header clearfix">
+                    <h2 class="pull-left col-xs-10">{{'Pending_Work_Full' | i18next}} <span>
+                           {{dashBoardCtrl.currentTime}}, Today </span></h2>
+
+                    <div class="pull-right refresh-data col-xs-2">
+                        <i class="fa fa-refresh grow" ng-click="dashBoardCtrl.getPendingWorkLoadSummary();"></i></div>
+                </header>
+                <svg width="100%" height="300"></svg>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="pendingLineChart">
+            <div class="main-box summary-box grey-bg">
+                <header class="main-box-header clearfix">
+                    <h2 class="pull-left">{{'Hourly_Trend_Full' | i18next}}</h2>
+
+                    <div class="pull-right refresh-data">
+                        <i class="fa fa-refresh grow"
+                           ng-click="dashBoardCtrl.getPendingWorkLoadSummaryByTime();"></i></div>
+                </header>
+                <svg width="100%" height="300"></svg>
+
+            </div>
+        </div>
+    </div>
+</div>
+<span us-spinner="{radius:30, width:8, length: 16}"></span>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h2 class="pull-left">{{'Recent_Manifests_Full' | i18next}}</h2>
+
+                    <div class="filter-block pull-right">
+                        <a ng-click="navigateToLoadInfo('M')" class="btn btn-primary pull-right">
+                            <i class="fa fa-eye fa-lg"></i> {{'View_All_Manifests_Full' | i18next}}
+                        </a>
+                    </div>
+                </header>
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive clearfix">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th><span>{{'Load_Id_Full'| i18next}}</span></th>
+                                <th><span>{{'Total_Units_Full' | i18next}}</span></th>
+                                <th><span>{{'Load_Status_Full' | i18next}}</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-show="dashBoardCtrl.manifestInfos.length!=0"
+                                ng-repeat="manifestInfo in dashBoardCtrl.manifestInfos">
+                                <td>{{manifestInfo.loadReferenceId}}</td>
+                                <td>{{manifestInfo.totalUnitCount}}</td>
+                                <td>
+                                    <span>{{manifestInfo.loadState}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ng-show="dashBoardCtrl.manifestInfos.length==0" class="text-center">
+                                    {{'No_Data_Available_Full' | i18next}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h2 class="pull-left">{{'Recent_Loads_Full' | i18next}}</h2>
+
+                    <div class="filter-block pull-right">
+                        <a ng-click="navigateToLoadInfo('L')" class="btn btn-primary pull-right">
+                            <i class="fa fa-eye fa-lg"></i> {{'View_All_Loads_Full' | i18next}}
+                        </a>
+                    </div>
+                </header>
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive clearfix">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th><span>{{'Load_Id_Full'| i18next}}</span></th>
+                                <th><span>{{'Total_Units_Full' | i18next}}</span></th>
+                                <th><span>{{'Load_Status_Full' | i18next}}</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-show="dashBoardCtrl.loadInfos.length!=0"
+                                ng-repeat="loadInfo in dashBoardCtrl.loadInfos">
+                                <td>{{loadInfo.loadReferenceId}}</td>
+                                <td>{{loadInfo.totalUnitCount}}</td>
+                                <td>
+                                    <span>{{loadInfo.loadState}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td ng-show="dashBoardCtrl.loadInfos.length==0" class="text-center">
+                                    {{'No_Data_Available_Full' | i18next}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

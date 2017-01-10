@@ -1,0 +1,28 @@
+{
+	"summaryEntityListMap":
+	{
+		"set1":
+		[
+				{"id":2016090500,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":100,"labelCount":100,"loadCount":0,"manifestCount":0,"errorCount":0,"pendingLoadCount":100,"pendingManifestCount":0,"createTime":null},
+				{"id":2016090501,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":75,"labelCount":50,"loadCount":25,"manifestCount":0,"errorCount":0,"pendingLoadCount":125,"pendingManifestCount":25,"createTime":null},			
+				{"id":2016090502,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":125,"labelCount":0,"loadCount":125,"manifestCount":null,"errorCount":null,"pendingLoadCount":0,"pendingManifestCount":150,"createTime":null},
+				{"id":2016090503,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":150,"labelCount":0,"loadCount":125,"manifestCount":null,"errorCount":null,"pendingLoadCount":0,"pendingManifestCount":0,"createTime":null}
+		],
+		"set2":
+		[
+				{"id":2016090500,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":100,"labelCount":100,"loadCount":0,"manifestCount":0,"errorCount":0,"pendingLoadCount":100,"pendingManifestCount":0,"createTime":null}
+				
+		],
+		"set3":
+		[
+				{"id":2016090506,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":100,"labelCount":100,"loadCount":0,"manifestCount":0,"errorCount":0,"pendingLoadCount":0,"pendingManifestCount":0,"createTime":null}				
+		]
+	},
+	"summaryRequestListMap":
+	{
+		"set1":
+		[
+				{"id":2016090506,"node":"8905","carrier":"UPS","carrierService":"UPS Ground","requestCount":100,"labelCount":100,"loadCount":0,"manifestCount":0,"errorCount":0,"pendingLoadCount":0,"pendingManifestCount":0,"createTime":null}				
+		]
+	}
+}

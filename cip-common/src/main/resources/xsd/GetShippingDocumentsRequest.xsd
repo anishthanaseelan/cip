@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.cts.com/cip/Common"
+	targetNamespace="http://www.cts.com/cip/GetShippingDocumentsRequest" 
+	xmlns:tns="http://www.cts.com/cip/GetShippingDocumentsRequest">	
+	
+	<!-- Import the dependency xsds -->
+	<xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+
+	<xs:element name="GetShippingDocumentsRequest">
+		<xs:complexType>
+    		 <xs:choice>
+    			<xs:element name="load" type="common:loadBase" 
+    				minOccurs="1" maxOccurs = "1" />
+    			<xs:element name="shippingUnitBase" type="common:shippingUnitBase" minOccurs = "1" 
+    				maxOccurs="unbounded"/>
+			</xs:choice>
+    		<xs:attribute name="requestTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+  	</xs:element>
+    
+</xs:schema>

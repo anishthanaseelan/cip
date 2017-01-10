@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.cts.prototype.carrier.client.ProtoTypeAgentServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.785 sec - in com.cts.prototype.carrier.client.ProtoTypeAgentServiceImplTest

@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.cts.cip</groupId>
+	<artifactId>cip</artifactId>
+	<version>0.5.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>CIP</name>
+
+	<description>CIP product - Parent module to manage the release management</description>
+
+	<modules>
+		<module>cip-common</module>
+	 	<module>cip-rule-repo</module>
+		<module>cip-rule</module>
+		<module>cip-document</module>
+		<module>cip-core-repo</module>
+		<module>cip-core</module>
+		<module>cip-core-web</module>
+		<module>cip-master-repo</module>
+		<module>cip-master</module>
+		<module>cip-master-web</module>		 
+		<module>cip-agent-common</module>
+		<module>cip-agent-web</module>
+		<module>cip-agent-carrier-RI</module>
+ 		<module>cip-kpi-repo</module>
+		<module>cip-kpi</module>
+		<module>cip-kpi-web</module> 
+		<module>cip-manager</module>
+	</modules>
+
+	<scm>
+		<developerConnection>scm:git:https://github.com/CarrierIntegrationPlatform/CarrierIntegrationPlatform.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagBase>https://github.com/CarrierIntegrationPlatform/CarrierIntegrationPlatform.git</tagBase>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

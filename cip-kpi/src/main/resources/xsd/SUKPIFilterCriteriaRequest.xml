@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:kpiFilterCriterias xmlns:tns="http://www.yourcompany.com/retail/cip/KPIGenericCriteria" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.yourcompany.com/retail/cip/KPIGenericCriteria SUKPIFilterCriteriaRequest.xsd ">
+  <tns:dateTimeRange>
+    <tns:fromDate>2001-12-31T12:00:00</tns:fromDate>
+    <tns:toDate>2001-12-31T12:00:00</tns:toDate>
+  </tns:dateTimeRange>
+  <tns:businessUnits>
+    <tns:businessUnit>
+      <tns:id>0</tns:id>
+      <tns:refId>tns:refId</tns:refId>
+      <tns:nodes>
+        <tns:node>
+          <tns:id>0</tns:id>
+          <tns:refId>tns:refId</tns:refId>
+        </tns:node>
+      </tns:nodes>
+    </tns:businessUnit>
+  </tns:businessUnits>
+  <tns:carriers>
+    <tns:carrier>
+      <tns:id>0</tns:id>
+      <tns:refId>tns:refId</tns:refId>
+      <tns:carrierServices>
+        <tns:id>0</tns:id>
+        <tns:refId>tns:refId</tns:refId>
+      </tns:carrierServices>
+    </tns:carrier>
+  </tns:carriers>
+</tns:kpiFilterCriterias>

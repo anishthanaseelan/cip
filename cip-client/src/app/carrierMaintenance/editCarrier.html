@@ -1,0 +1,220 @@
+<div>
+    <ng-form name="editedCarrierInfoValidation" novalidate="novalidate">
+        <div class="row">
+            <div class='col-md-6 col-sm-12 col-xs-12'>
+                <h2 class="padding-bottom-p0" ng-i18next="Edit_Carrier_Full"> : {{editCarrierCtrl.serviceListDetails.name}}</h2>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 margin-m20 padding-right-p15">
+                <button class="btn btn-primary padding-p10 btn-next"
+                        value="Create"
+                        ng-disabled="editedCarrierInfoValidation.$invalid"
+                        ng-click="editCarrierCtrl.checkFormValidate(editedCarrierInfoValidation);
+                        editedCarrierInfoValidation.$valid && editCarrierCtrl.saveEditedCarrier();"
+                        ng-i18next="Save_Full"></button>
+                <button class="btn btn-primary-outline padding-p10 btn-cancel"
+                        value="cancel"
+                        ng-click="editCarrierCtrl.cancelEditedCarrier();"
+                        ng-i18next="Cancel_Full"></button>
+            </div>
+        </div>
+
+        <uib-Accordion ng-init="accordion.editCarrierDetailsOpen=false">
+            <div uib-accordion-group class="panel-default" is-open="accordion.editCarrierDetailsOpen">
+                <uib-accordion-heading>
+                    <div class="row margin-m-5">
+                        <div class="col-xs-12 col-sm-6 col-md-4 editCarrierHeader">
+                            <div class="padding-top-p10">
+                                {{'Carrier_Name_Full' | i18next}} :
+                                <span>{{editCarrierCtrl.serviceListDetails.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-11 col-sm-5 col-md-4 editCarrierHeader">
+                            {{'Carrier_Status_Full' | i18next}} :
+                            <switch id="carrierStatus"
+                                    name="carrierStatus"
+                                    disabled="true"
+                                    class="green editCarrierSwitch"
+                                    ng-model="editCarrierCtrl.serviceListDetails.active"
+                                    size="medium"></switch>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-md-offset-2 editCarrierGlyphicon">
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-up': accordion.editCarrierDetailsOpen, 'glyphicon-chevron-down': !accordion.editCarrierDetailsOpen}"></i>
+                        </div>
+                    </div>
+                </uib-accordion-heading>
+                <div class="row detailsEditSection bgWhiteColor">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Carrier_Name_Full"></span>
+                            </label>
+                            <input ng-model="editCarrierCtrl.serviceListDetails.name"
+                                   name="editedCarrierName"
+                                   class="col-md-6 col-sm-6 col-xs-6 updateCarrierLabel font-xs"
+                                   required/>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="!editedCarrierInfoValidation.$valid && editedCarrierInfoValidation.editedCarrierName.$error.required">
+                                {{'Carrier_Name_Required_Full' | i18next}}</span>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Contact_Name_Full"></span>
+                            </label>
+                            <input ng-model="editCarrierCtrl.serviceListDetails.locationInfo.primaryContactName"
+                                   name="editedName"
+                                   class="col-md-6 col-sm-6 col-xs-6 updateCarrierLabel font-xs"
+                                   required/>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="editedCarrierInfoValidation.editedName.$error.required">{{'Name_Required_Full' | i18next}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Description_Full"></span>
+                            </label>
+                            <input ng-model="editCarrierCtrl.serviceListDetails.description"
+                                   name="editedDescription"
+                                   class="col-md-6 col-sm-6 col-xs-6 updateCarrierLabel font-xs"
+                                   required/>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="editedCarrierInfoValidation.editedDescription.$error.required">{{'Description_Required_Full' | i18next}}</span>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Phone_Full"></span>
+                            </label>
+                            <input ng-model="editCarrierCtrl.serviceListDetails.locationInfo.primaryContactNumber"
+                                   ng-maxlength="10"
+                                   ng-minlength="10"
+                                   sd-allow-pattern="\d"
+                                   limit-to="10"
+                                   name="phoneNumber"
+                                   class="col-md-6 col-sm-6 col-xs-6 updateCarrierLabel font-xs"
+                                   required/>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="editedCarrierInfoValidation.$invalid && editedCarrierInfoValidation.phoneNumber.$error.required">
+                                {{'Phone_number_is_required_Full' | i18next}}
+                            </span>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="((editedCarrierInfoValidation.phoneNumber.$error.minlength ||
+                                  editedCarrierInfoValidation.phoneNumber.$error.maxlength ||
+                                  editedCarrierInfoValidation.phoneNumber.$error.number) &&
+                                  editedCarrierInfoValidation.phoneNumber.$invalid)">
+                                {{'Valid_Phone_number_is_required_Full' | i18next}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Status_Full"></span>
+                            </label>
+                            <switch id="carrierStatus"
+                                    name="carrierStatus"
+                                    ng-model="editCarrierCtrl.serviceListDetails.active"
+                                    class="green editCarrierAccordionSwitch"
+                                    size="medium"></switch>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4 col-sm-5 col-xs-5 editCarrierLabel font-xs">
+                                <span ng-i18next="Email_Full"></span>
+                            </label>
+                            <input ng-model="editCarrierCtrl.serviceListDetails.locationInfo.primaryContactEmail"
+                                   name="viewCarrierEmail"
+                                   class="col-md-6 col-sm-6 col-xs-6 updateCarrierLabel font-xs"
+                                   type="email"
+                                   required/>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="editedCarrierInfoValidation.viewCarrierEmail.$error.required">
+                                {{'Email_Required_Full' | i18next}}
+                            </span>
+                            <span class="updateDetailsError padding-left-p0 col-md-6"
+                                  ng-show="editedCarrierInfoValidation.viewCarrierEmail.$error.email">
+                                {{'Email_not_Valid_Full' | i18next}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-Accordion>
+    </ng-form>
+
+    <!--Carrier details information-->
+    <ng-form name="imageUploadForm" novalidate="true">
+        <div class="row">
+            <div class='col-md-6 col-sm-12 col-xs-12'>
+                <h2 class="margin-bottom-10" ng-i18next="Carrier_Details_Full"></h2>
+            </div>
+        </div>
+
+        <div class="row carrierDetailsDiv">
+            <div class="col-md-3 col-sm-12 col-xs-12 main-box clearfix">
+                <div class="col-md-12 col-sm-12 col-xs-12 editCarrierDetailsDiv">
+                    <label class="editCarrierLabel font-xs">
+                        <span ng-i18next="Carrier_Logo_Preview_Full"></span>
+                    </label>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 editCarrierLabel font-xs editCarrierDetailsLogoDiv">
+                    <img class="iconImage"
+                         alt="{{editCarrierCtrl.serviceListDetails.name}}"
+                         ng-src="{{editCarrierCtrl.serviceListDetails.iconUrl}}"/>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <input file-model="myFile" id="files" name="fileName" class="form-control row-buffer-sm"
+                               ng-model="editCarrierCtrl.fileName" type="file" valid-file>
+                    <span class="updateDetailsError padding-left-p0 col-md-12"
+                          ng-show="imageUploadForm.fileName.$error.validFile">{{'Invalid_File_Full' | i18next}}
+                            </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-md-3 col-xs-offset-8 col-sm-offset-6 col-md-offset-6">
+                        <input class="btn btn-primary-outline padding-p10 btn-cancel margin-b10 row-buffer-sm"
+                               value="Upload"
+                               type="submit"
+                               ng-click="imageUploadForm.$valid && editCarrierCtrl.uploadImageFile();">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-12 editCarrierDetailsSection2">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="main-box clearfix">
+                            <div class="main-box-body clearfix">
+                                <div class="col-xs-12 col-md-12 col-sm-12">
+                                    <div id="editCarrierGrid"
+                                         ui-grid="editCarrierCtrl.gridOptions"
+                                         class="grid"
+                                         ui-grid-resizecolumns ui-grid-move-columns
+                                         ui-grid-autoresize ui-grid-expandable></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <h2 class="ng-binding"></h2>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 margin-m20 padding-right-p15">
+            <button class="btn btn-primary padding-p10 btn-next"
+                    value="Create"
+                    ng-disabled="editedCarrierInfoValidation.$invalid"
+                    ng-click="editCarrierCtrl.checkFormValidate(editedCarrierInfoValidation);
+                        editedCarrierInfoValidation.$valid && editCarrierCtrl.saveEditedCarrier();"
+                    ng-i18next="Save_Full"></button>
+            <button class="btn btn-primary-outline padding-p10 btn-cancel"
+                    value="cancel"
+                    ng-click="editCarrierCtrl.cancelEditedCarrier();"
+                    ng-i18next="Cancel_Full"></button>
+        </div>
+    </div>
+</div>

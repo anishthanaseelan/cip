@@ -1,0 +1,531 @@
+<div class="row cip-header">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ng-form role="form" name="nodeDetails" novalidate="novalidate">
+                <div class="row margin-b10">
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <h2 class="editNodeHeader padding-bottom-p0"> {{'Edit_Node_Full' | i18next}} :
+                            {{editNodeCtrl.nodeData.name}}</h2>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 margin-m20 padding-right-p15">
+                        <button class="btn btn-primary padding-p10 btn-next"
+                                value="Create"
+                                ng-click="editNodeclick=true; editNodeCtrl.checkFormValidate(nodeDetails); nodeDetails.$valid && editNodeCtrl.editNode();">
+                            {{'Save_Full' | i18next}}
+                        </button>
+                        <button class="btn btn-primary-outline padding-p10 btn-cancel"
+                                value="cancel"
+                                ng-click="editNodeCtrl.cancel();">
+                            {{'Cancel_Full' | i18next}}
+                        </button>
+                    </div>
+                </div>
+
+                <uib-accordion ng-init="accordion.editNodeDetailsOpen = false">
+                    <div uib-accordion-group class="panel-default" is-open="accordion.editNodeDetailsOpen">
+                        <uib-accordion-heading>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 editCarrierHeader">
+                                    {{'Node_Name_Full' | i18next}} : <span>{{editNodeCtrl.nodeData.name}}</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-3 editCarrierHeader">
+                                    {{'Node_ID_Full' | i18next}} : <span>{{editNodeCtrl.nodeData.id}}</span>
+                                </div>
+                                <i class="pull-right glyphicon"
+                                   ng-class="{'glyphicon-chevron-up': accordion.editNodeDetailsOpen, 'glyphicon-chevron-down': !accordion.editNodeDetailsOpen}"></i>
+                            </div>
+                        </uib-accordion-heading>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10 padding-top-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 labelCustomize">
+                                            <span ng-i18next="Node_Name_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   name="nodename"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.name"
+                                                   sd-allow-pattern="(^[a-zA-Z0-9 ]+$)"
+                                                   data-ng-i18next="[placeholder]Enter_Node_Name_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodename.$error.required">
+                        {{'Please_Enter_Node_Name_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Address_Line_1_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   name="nodeaddr1"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationAddressLine1"
+                                                   data-ng-i18next="[placeholder]Enter_Address_Line_1_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodeaddr1.$error.required">
+                        {{'Please_Enter_Address_Line_1_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Address_Line_2_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   name="nodeaddr2"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationAddressLine2"
+                                                   data-ng-i18next="[placeholder]Enter_Address_Line_2_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodeaddr2.$error.required">
+                        {{'Please_Enter_Address_Line_2_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10 padding-top-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 labelCustomize">
+                                            <span ng-i18next="GLN_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   name="nodegln"
+                                                   class="node-input w-90"
+                                                   sd-allow-pattern="\d"
+                                                   ng-model="editNodeCtrl.glnNumber"
+                                                   data-ng-i18next="[placeholder]Enter_GLN_Number_Full"
+                                                   disabled/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodegln.$error.required">
+                        {{'Please_Enter_GLN_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10 padding-top-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 labelCustomize">
+                                            <span ng-i18next="Status_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8 nodeStatus">
+                                            <switch id="nodestatus"
+                                                    ng-model="editNodeCtrl.nodeData.nodeStatusActive">
+                                            </switch>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 labelCustomize">
+                                            <span ng-i18next="City_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text" name="nodecity"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationCity"
+                                                   sd-allow-pattern="[a-z]"
+                                                   data-ng-i18next="[placeholder]Enter_City_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodecity.$error.required">
+                        {{'Please_Enter_City_Full' | i18next}}
+                    </span>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodecity.$error.pattern">
+                        {{'City_not_Valid_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 labelCustomize">
+                                            <span ng-i18next="State_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   sd-allow-pattern="[a-z]"
+                                                   name="nodestate"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationStateCode"
+                                                   limit-to="2"
+                                                   data-ng-i18next="[placeholder]Enter_State_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode w-98"
+                          ng-show="editNodeclick && nodeDetails.nodestate.$error.required">
+                        {{'Please_Enter_State_Full' | i18next}}
+                    </span>
+                    <span class="shipmentErrorNode w-98"
+                          ng-show="editNodeclick && nodeDetails.nodestate.$error.pattern">
+                        {{'State_not_Valid_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Country_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <select name="nodeCountry"
+                                                    class="node-input w-90 no-padding-top-bottom"
+                                                    ng-model="editNodeCtrl.nodeData.locationCountryCode"
+                                                    ng-options="cntry.code as cntry.name for cntry in editNodeCtrl.countryData"
+                                                    ng-change="editNodeCtrl.selectCountry(editNodeCtrl.nodeData.locationCountryCode)"
+                                                    required>
+                                                <option value="">{{'Select_Country_Full' | i18next}}</option>
+                                            </select>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodeCountry.$error.required">
+                        {{'Please_Select_Country_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span class="padding-left-p5">{{'Zip_Code_Full' | i18next}}</span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   sd-allow-pattern="\d"
+                                                   limit-to="10"
+                                                   class="node-input w-90"
+                                                   name="nodezip"
+                                                   ng-model="editNodeCtrl.nodeData.locationZipcode"
+                                                   data-ng-i18next="[placeholder]Enter_Zip_Code_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode w-98"
+                          ng-show="editNodeclick && nodeDetails.nodezip.$error.required">
+                        {{'Please_Enter_ZipCode_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Contact_Name_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   name="nodecontact"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationPrimaryContactName"
+                                                   sd-allow-pattern="(^[a-zA-Z ]+$)"
+                                                   data-ng-i18next="[placeholder]Enter_Contact_Name_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodecontact.$error.required">
+                        {{'Please_Enter_Name_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Phone_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="text"
+                                                   sd-allow-pattern="\d"
+                                                   limit-to="10"
+                                                   name="nodephone"
+                                                   class="node-input w-90"
+                                                   ng-model="editNodeCtrl.nodeData.locationPrimaryContactNumber"
+                                                   data-ng-i18next="[placeholder]Enter_Phone_Number_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode w-98"
+                          ng-show="editNodeclick && nodeDetails.nodephone.$error.required">
+                        {{'Please_Enter_Phone_Number_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="row">
+                                    <div class="row padding-bottom-p10">
+                                        <label class="col-xs-4 col-sm-4 col-md-4 padding-left-p10 labelCustomize">
+                                            <span ng-i18next="Email_Full"></span>
+                                        </label>
+
+                                        <div class="col-xs-8 col-sm-8 col-md-8">
+                                            <input type="email"
+                                                   name="nodeemail"
+                                                   class="node-input w-80"
+                                                   ng-model="editNodeCtrl.nodeData.locationPrimaryContactEmail"
+                                                   data-ng-i18next="[placeholder]Enter_Email_Full"
+                                                   required/>
+                    <span class="shipmentErrorNode"
+                          ng-show="editNodeclick && nodeDetails.nodeemail.$error.required">
+                        {{'Please_Enter_Email_Full' | i18next}}
+                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion>
+            </ng-form>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-6">
+                        <h2 class="margin-bottom-10" ng-i18next="Carrier_Details_Full"></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-xs-4 col-md-4 col-md-4" id="viewNodeTable1">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th colspan="2" class="alignCenter">{{'Available_Carriers_Full' | i18next}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in editNodeCtrl.carrierData track by $index">
+                                <td class="nodetable-center-td">
+                                    <img class="imageWidth" ng-src="{{item.iconUrl}}">
+                                </td>
+                                <td class="nodetable-center-td padding-top-p15">
+                                    <switch id="carrierflag"
+                                            name="carrierflag"
+                                            ng-model="item.active"
+                                            class="green"
+                                            size="medium"></switch>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--Ship Via listing table -->
+                    <div class="col-xs-8 col-md-8 col-md-8" id="viewNodeTable2">
+                        <table class="table table-bordered"
+                               ng-repeat="item in editNodeCtrl.carrierData | filter:{active: true} track by $index">
+                            <tbody>
+                            <tr class="w-100">
+                                <td class="w-20 nodetable-center-td">
+                                    <img class="imageWidth" ng-src="{{item.iconUrl}}">
+                                </td>
+                                <td class="w-80 padding-p0-full">
+                                    <table class="w-100 innertable">
+                                        <tr class="node-border-bottom"
+                                            ng-class="{'borderBottomNone': $last}"
+                                            ng-repeat-start="item1 in item.carrierServiceInfoList track by $index">
+                                            <td class="padding-p12 alignCenter w-70">{{item1.name}}</td>
+                                            <td class="padding-p12 nodeRowDetails">
+                                                <a class="glyphicon glyphicon-edit"
+                                                   ng-click="editNodeCtrl.toggleDetail(item1.carrierServiceId,$index);"></a>
+                                            </td>
+                                            <td class="padding-p12 nodeRowDetails">
+                                                <switch id="shipviaflag"
+                                                        name="shipviaflag"
+                                                        ng-model="item1.active"
+                                                        class="green"
+                                                        size="medium"></switch>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="jumbotron"
+                                            ng-repeat-end
+                                            ng-show="editNodeCtrl.activePosition == $index;editNodeCtrl.activeshipVia == item1.carrierServiceId">
+                                            <td colspan="3">
+                                                <div class="row margin-s20">
+                                            <span class="upArrow glyphicon glyphicon-chevron-up"
+                                                  ng-click="editNodeCtrl.toggleDetail(item1.carrierServiceId,$index);"></span>
+                                                    <h4 class="serviceManagementHeader">
+                                                        {{'Service_Management_Full' | i18next}}
+                                                    </h4>
+                                                </div>
+                                                <ng-form role="form" name="serviceDetails" novalidate="novalidate">
+                                                    <div class="row">
+                                                        <label class="col-xs-4 col-sm-4 col-md-4 editCarrierLabel font-sm">
+                                                            <span ng-i18next="Contact_Name_Full"></span>
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 nodeformdiv3">
+                                                            <input type="text" name="contactname"
+                                                                   class="updateCarrierLabel font-sm w-100"
+                                                                   ng-model="item1.locationPrimaryContactName"
+                                                                   required/>
+                                                    <span class="shipmentErrorNode"
+                                                          ng-show="editServiceclick && serviceDetails.contactname.$error.required">
+                                                        {{'Please_Enter_Name_Full' | i18next}}
+                                                    </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label class="col-xs-4 col-sm-4 col-md-4 editCarrierLabel font-sm">
+                                                            <span ng-i18next="Phone_Full"></span>
+                                                        </label>
+
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 nodeformdiv3">
+                                                            <input type="text" class="updateCarrierLabel font-sm w-100"
+                                                                   sd-allow-pattern="\d"
+                                                                   name="phone"
+                                                                   ng-model="item1.locationPrimaryContactNumber"
+                                                                   required/>
+                                                    <span class="shipmentErrorNode"
+                                                          ng-show="editServiceclick && serviceDetails.phone.$error.required">
+                                                        {{'Please_Enter_Phone_Number_Full' | i18next}}
+                                                    </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label class="col-xs-4 col-sm-4 col-md-4 editCarrierLabel font-sm"><span
+                                                                ng-i18next="Email_Full"></span></label>
+
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 nodeformdiv3">
+                                                            <input type="email"
+                                                                   class="updateCarrierLabel font-sm w-100"
+                                                                   name="email"
+                                                                   ng-model="item1.locationPrimaryContactEmail"
+                                                                   required/>
+                                                    <span class="shipmentErrorNode"
+                                                          ng-show="editServiceclick && serviceDetails.email.$error.required">{{'Please_Enter_Email_Full' | i18next}}</span>
+                                                    <span class="shipmentErrorNode"
+                                                          ng-show="editServiceclick && serviceDetails.email.$error.email">{{'Email_not_Valid_Full' | i18next}}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label
+                                                                class="col-xs-4 col-sm-4 col-md-4 editCarrierLabel font-sm"><span
+                                                                ng-i18next="Account_Number_Full"></span></label>
+
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 nodeformdiv3">
+                                                            <input type="text"
+                                                                   sd-allow-pattern="\d"
+                                                                   class="updateCarrierLabel font-sm w-100"
+                                                                   name="accnumber"
+                                                                   ng-model="item1.accountNumber"
+                                                                   required/>
+                                                    <span class="shipmentErrorNode"
+                                                          ng-show="editServiceclick && serviceDetails.accnumber.$error.required">{{'Please_Enter_Account_Number_Full' | i18next}}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label
+                                                                class="col-xs-4 col-sm-4 col-md-4 editCarrierLabel font-sm"><span
+                                                                ng-i18next="Meter_Number_Full"></span></label>
+
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 nodeformdiv3">
+                                                            <input type="text"
+                                                                   sd-allow-pattern="\d"
+                                                                   class="updateCarrierLabel font-sm font-sm w-100"
+                                                                   name="metnumber"
+                                                                   ng-model="item1.meterNumber"
+                                                                   required/>
+                                                    <span class="shipmentErrorNode displayBlock"
+                                                          ng-show="editServiceclick && serviceDetails.metnumber.$error.required">{{'Please_Enter_Meter_Number_Full' | i18next}}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label class="col-md-2 control-label"></label>
+
+                                                        <div class="col-xs-8 col-sm-8 col-md-8 margin-m20 w-69 padding-right-p15">
+                                                            <button class="btn btn-primary padding-p10 btn-next"
+                                                                    ng-click="editServiceclick=true;serviceDetails.$valid && editNodeCtrl.editNode()">
+                                                                {{'Save_Full' | i18next}}
+                                                            </button>
+                                                            <button class="btn btn-primary-outline padding-p10 btn-cancel"
+                                                                    ng-click="editNodeCtrl.toggleDetail(item1.carrierServiceId,$index);">
+                                                                {{'Close_Full' | i18next}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </ng-form>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-b10">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-xs-6 col-sm-6 col-md-6"></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 margin-m20">
+                        <button class="btn btn-primary padding-p10 btn-next" value="Create"
+                                ng-click="editNodeclick=true; editNodeCtrl.checkFormValidate(nodeDetails); nodeDetails.$valid && editNodeCtrl.editNode();">
+                            {{'Save_Full' | i18next}}
+                        </button>
+                        <button class="btn btn-primary-outline padding-p10 btn-cancel" value="cancel"
+                                ng-click="editNodeCtrl.cancel();">
+                            {{'Cancel_Full' | i18next}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

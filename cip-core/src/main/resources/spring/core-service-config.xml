@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<import resource="core-repo-config.xml"/>
+	
+	<context:component-scan base-package="com.cts.cip"/>
+	<tx:annotation-driven/>
+	<context:annotation-config/>
+	
+	<bean id="carrierAgentService" class="com.cts.cip.core.bo.services.CarrierAgentServiceImpl">
+ 	 	<property name="agentServiceRequestMapper" ref="agentServiceRequestMapper"/>
+ 	 	<property name="agentServiceResponseMapper" ref="agentServiceResponseMapper"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="commonService" class="com.cts.cip.core.bo.services.CommonServiceImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="documentService" class="com.cts.cip.core.bo.services.DocumentServiceImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="loadRepoService" class="com.cts.cip.core.bo.services.LoadRepoServiceImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="loadService" class="com.cts.cip.core.bo.services.LoadServiceImpl">
+ 	 	<property name="loadBO" ref="loadBO"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="nodeDetailService" class="com.cts.cip.core.bo.services.NodeDetailServiceImpl">
+ 	 	<property name="carrierDetail" ref="carrierDetail"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="ruleEngineService" class="com.cts.cip.core.bo.services.RuleEngineServiceImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="shippingUnitRepoService" class="com.cts.cip.core.bo.services.ShippingUnitRepoServiceImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="shippingUnitService" class="com.cts.cip.core.bo.services.ShippingUnitServiceImpl">
+ 	 	<property name="shippingUnitBO" ref="shippingUnitBO"/>
+ 	 </bean>
+ 	 
+ 	 
+ 	 <bean id="commonBO" class="com.cts.cip.core.bo.CommonBOImpl">
+ 	 	<property name="commonService" ref="commonService"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="loadBO" class="com.cts.cip.core.bo.LoadBOImpl">
+ 	 	<property name="loadRepoService" ref="loadRepoService"/>
+ 	 	<property name="shippingUnitService" ref="shippingUnitService"/>
+ 	 	<property name="carrierAgentService" ref="carrierAgentService"/>
+ 	 	<property name="shippingUnitBO" ref="shippingUnitBO"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="shippingUnitBO" class="com.cts.cip.core.bo.ShippingUnitBOImpl">
+	 	 <property name="shippingUnitRepoService" ref="shippingUnitRepoService"/>
+	 	 <property name="carrierAgentService" ref="carrierAgentService"/>
+	 	 <property name="ruleEngineService" ref="ruleEngineService"/>
+	 	 <property name="documentService" ref="documentService"/>
+	 	 <property name="loadService" ref="loadService"/>
+	 	 <property name="nodeDetailService" ref="nodeDetailService"/>
+	 	 <property name="commonService" ref="commonService"/>
+	 	 <property name="validationEnabled" value="${validation.enabled}"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="agentServiceRequestMapper" class="com.cts.cip.core.bo.services.mapper.AgentServiceRequestMapperImpl">
+ 	 	<property name="carrierDetail" ref="carrierDetail"/>
+ 	 </bean>
+ 	 
+ 	 <bean id="agentServiceResponseMapper" class="com.cts.cip.core.bo.services.mapper.AgentServiceResponseMapperImpl">
+ 	 </bean>
+ 	 
+ 	 <bean id="carrierDetail" class="com.cts.cip.core.utilities.CarrierDetailsMap">
+ 	 </bean>
+ 	 
+</beans>	

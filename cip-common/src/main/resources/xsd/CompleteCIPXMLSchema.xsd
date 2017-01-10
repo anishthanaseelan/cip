@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs ="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.cts.com/cip/CIPXMLSchema" 
+xmlns:tns="http:///www.cts.com/cip/CIPXMLSchema" 
+xmlns:common="http:///www.cts.com/cip/Common"
+
+xmlns:createreqtns="http://www.cts.com/cip/CreateShippingUnitRequest"
+xmlns:createrestns="http://www.cts.com/cip/CreateShippingUnitResponse"
+
+xmlns:cancelreqtns="http://www.cts.com/cip/CancelShippingUnitRequest"
+xmlns:cancelrestns="http://www.cts.com/cip/CancelShippingUnitResponse"
+
+xmlns:manifestreqtns="http://www.cts.com/cip/ManifestShippingUnitsRequest"
+xmlns:manifestrestns="http://www.cts.com/cip/ManifestShippingUnitsResponse"
+
+xmlns:loadreqtns="http://www.cts.com/cip/LoadShippingUnitRequest"
+xmlns:loadrestns="http://www.cts.com/cip/LoadShippingUnitResponse"
+
+xmlns:unloadreqtns="http://www.cts.com/cip/UnloadShippingUnitRequest"
+xmlns:unloadrestns="http://www.cts.com/cip/UnloadShippingUnitResponse"
+
+xmlns:reprintreqtns="http://www.cts.com/cip/ReprintShippingLabelRequest"
+xmlns:reprintrestns="http://www.cts.com/cip/ReprintShippingLabelResponse"
+
+xmlns:shipdocreqtns="http://www.cts.com/cip/GetShippingDocumentsRequest"
+xmlns:shipdocrestns="http://www.cts.com/cip/GetShippingDocumentsResponse"
+
+
+elementFormDefault="qualified">
+
+	<!-- Adding Dependencies -->
+	
+	<!-- Create Shipping Unit  -->              
+    <xs:import namespace="http://www.cts.com/cip/CreateShippingUnitRequest"  
+              schemaLocation="CreateShippingUnitRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/CreateShippingUnitResponse"  
+              schemaLocation="CreateShippingUnitResponse.xsd"/>
+              
+	<!-- Cancel Shipping Unit  -->              
+    <xs:import namespace="http://www.cts.com/cip/CancelShippingUnitRequest"  
+              schemaLocation="CancelShippingUnitRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/CancelShippingUnitResponse"  
+              schemaLocation="CancelShippingUnitResponse.xsd"/>
+              
+    <!-- Manifest   -->              
+    <xs:import namespace="http://www.cts.com/cip/ManifestShippingUnitsRequest"  
+              schemaLocation="ManifestShippingUnitsRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/ManifestShippingUnitsResponse"  
+              schemaLocation="ManifestShippingUnitsResponse.xsd"/>
+              
+    <!-- Load Ship Unit   -->              
+    <xs:import namespace="http://www.cts.com/cip/LoadShippingUnitRequest"  
+              schemaLocation="LoadShippingUnitRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/LoadShippingUnitResponse"  
+              schemaLocation="LoadShippingUnitResponse.xsd"/>
+              
+    <!-- Unload Ship Unit   -->              
+    <xs:import namespace="http://www.cts.com/cip/UnloadShippingUnitRequest"  
+              schemaLocation="UnloadShippingUnitRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/UnloadShippingUnitResponse"  
+              schemaLocation="UnloadShippingUnitResponse.xsd"/>
+              
+     <!-- Reprint Ship Unit  Label -->              
+    <xs:import namespace="http://www.cts.com/cip/ReprintShippingLabelRequest"  
+              schemaLocation="ReprintShippingLabelRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/ReprintShippingLabelResponse"  
+              schemaLocation="ReprintShippingLabelResponse.xsd"/>          
+      
+              
+    <!-- Documents   -->              
+    <xs:import namespace="http://www.cts.com/cip/GetShippingDocumentsRequest"  
+              schemaLocation="GetShippingDocumentsRequest.xsd"/>
+    <xs:import namespace="http://www.cts.com/cip/GetShippingDocumentsResponse"  
+              schemaLocation="GetShippingDocumentsResponse.xsd"/>
+</xs:schema>

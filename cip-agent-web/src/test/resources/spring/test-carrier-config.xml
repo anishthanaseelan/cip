@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/data/jpa 
+         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Dependency injection for Carrier Integration -->
+
+	<import resource="test-data-source-config.xml" />
+<!-- 	<import resource="carrier-mapping.xml" /> -->
+	<beans profile="test">
+
+		<context:component-scan base-package="com.cts.cip.carrier" />
+		<tx:annotation-driven />
+		<context:property-placeholder
+			location="classpath:properties/cip-agent.properties"
+			system-properties-mode="OVERRIDE" />
+<!-- 
+		<bean id="carrierAgent"
+			class="com.cts.cip.carrier.agent.service.CarrierAgentServiceImpl">
+			<property name="commonCarrierClient" ref="commonCarrierClient" />
+		</bean>
+
+		<bean id="commonCarrierClient" class="com.cts.cip.carrier.CarrierClientImpl"
+			init-method="initializeMap">
+			<property name="carrierClientLocator" ref="carrierClientLocator" />
+			<property name="commonUtils" ref="commonUtils" />
+		</bean> -->
+
+		<bean id="commonUtils" class="com.cts.cip.utils.CarrierCommonUtils" />
+		
+		<bean id="notificationManager" class="com.cts.cip.utils.NotificationManager" init-method="initialize">
+			<property name="commonUtils" ref="commonUtils"/>
+		</bean>
+
+		<bean id="entityManagerFactory"
+			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+			<property name="jpaVendorAdapter">
+				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+					<property name="database" value="${jpa.database}" />
+					<property name="showSql" value="${jpa.showSql}" />
+					<property name="generateDdl" value="true" />
+				</bean>
+
+			</property>
+			<property name="packagesToScan" value="com.cts.cip.carrier.repository" />
+			<property name="dataSource" ref="testDataSource" />
+		</bean>
+
+		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityManagerFactory" ref="entityManagerFactory" />
+			<property name="jpaDialect" ref="jpaDialect" />
+		</bean>
+
+		<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+		<bean
+			class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+
+	</beans>
+</beans>

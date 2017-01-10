@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true" version="3.0">
+  <display-name>cip-kpi</display-name>
+  <description>your company Shipping Solutions</description>
+  <context-param>
+    <param-name>spring.profiles.active</param-name>
+    <param-value>prod</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/kpi-web-config.xml</param-value>
+  </context-param>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+    
+  	<filter>
+		<filter-name>jersey-serlvet</filter-name>
+		<filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>com.cts.cip.kpi.resources.RestApplicationController</param-value>
+    </init-param>
+    <init-param>
+      <param-name>jersey.config.server.provider.classnames</param-name>
+      <param-value>org.glassfish.jersey.filter.LoggingFilter</param-value>
+    </init-param>
+	    <init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>io.swagger.jaxrs.listing</param-value>
+		</init-param>		
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>jersey-serlvet</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  
+</web-app>

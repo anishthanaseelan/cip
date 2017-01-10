@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.cts.com/cip/CreateShippingUnitRequest" 
+	xmlns:tns="http://www.cts.com/cip/CreateShippingUnitRequest"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:common="http://www.cts.com/cip/Common"
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified">
+    
+    <xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+              
+              
+    <xs:simpleType name="specialService">
+		<xs:restriction base="xs:string">
+		    <xs:enumeration value="RESIDENTIAL"/>
+		    <xs:enumeration value="SIGNATURE_ON_CONFIRMATION"/>
+		    <xs:enumeration value="CASH_ON_DELIVERY"/>
+		    <xs:enumeration value="HOLD_AT_LOCATION"/>
+		    <xs:enumeration value="HAZARDOUS_MATERIAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+              
+	<xs:complexType name="shipperServiceType">
+		<xs:sequence>
+			<xs:element name="shipperServiceTypeID" type="common:intType" />
+			<xs:element name="shipperServiceTypeCode" type="common:stringType" />
+		    <xs:element name="shipperServiceTypeName" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="shipperDetails">
+		<xs:sequence>
+			<xs:element name="billingAccountID" type="common:stringType"/>
+			<xs:element name="meterID" type="common:stringType"/>
+			<xs:element name="shipperServiceType" type="tns:shipperServiceType"/>
+		    <xs:element name="shipperAddress" type="common:address" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="hazardousMaterial">
+		<xs:sequence>
+			<xs:element name="code" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="description" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="shippingOptions">
+		<xs:sequence>
+			<xs:element name="specialServiceType" type="tns:specialService" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="specialInstructions" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="hazardousMaterial" type="tns:hazardousMaterial" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="carrierReference">
+		<xs:sequence>
+			<xs:element name="id" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		    <xs:element name="type" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Changing giftMessage to list of giftMessages -->
+	<xs:complexType name = "giftMessagesType">
+		<xs:sequence>
+			<xs:element name="giftMessage" type="common:stringType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name = "item">
+		<xs:sequence>
+			<xs:element name="sequenceNumber" type="common:shortType" minOccurs="0"/>
+		    <xs:element name="quantity" type="common:shortType" minOccurs="0"/>
+		    <!-- Changing vascode from decimal to String -->
+		    <!-- <xs:element name="vasCode" type="common:decType" minOccurs="0"/> -->
+		    <xs:element name="vasCode" type="common:stringType" minOccurs="0"/>
+		    <xs:element name="itemNumber" type="common:stringType"/>
+		    <xs:element name="description" type="common:stringType"/>
+		    <xs:element name="unitPrice" type="common:price"/>
+		    <xs:element name="totalPrice" type="common:price"/>
+		    <!-- Changing giftMessage to list of giftMessages -->
+		    <!-- <xs:element name="giftMessage" type="common:stringType"/> -->
+		    <xs:element name="giftMessages" type="tns:giftMessagesType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name ="invoiceDetails">
+		<xs:sequence>
+			<xs:element name="id" type="common:intType"/>
+			<xs:element name="salesTax" type="common:price"/>
+		    <xs:element name="shippingAndHandlingCharges" type="common:price"/>
+		    <xs:element name="totalOrderItemsCost" type="common:price"/>
+		    <xs:element name="shipmentTotalCost" type="common:price"/>
+		    <xs:element name="items" type = "tns:item" minOccurs="1"
+		    	maxOccurs = "unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="order">
+		<xs:sequence>
+			<xs:element name="orderNumber" type="common:stringType" />
+			<xs:element name="poNumber" type="common:stringType" />
+			<xs:element name="customerMembershipNumber"
+				type="common:stringType" />
+			<xs:element name="distributionCenterID"
+				type="common:distributionCenterID" />
+			<xs:element name="businessUnitID" type="common:intType"></xs:element>
+			<xs:element name="trailerNumber" type="common:trailerNumber"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="carrierTrailerNumber"
+				type="common:carrierTrailerNumber" minOccurs="0" maxOccurs="1" />
+            <xs:element name="trasactionControlNumber" type="common:stringType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="datePlannedShipment"
+				type="xs:string" minOccurs="0" />
+			<xs:element name="waveNumber" type="common:intType"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="asnNumber" type="common:stringType"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="shippingOptions"
+				type="tns:shippingOptions" minOccurs="0" maxOccurs="1" />
+			<xs:element name="billingAddress" type="common:address"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="deliveryToAddress" type="common:address"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="returnAddress" type="common:address" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="shippingUnit">
+	  	<xs:sequence>
+			<xs:element name="shippingUnitBase" type="common:shippingUnitBase"/>
+			<xs:element name="weightAndDimensions" type="common:weightAndDimensions"/>
+			<xs:element name="shipperDetails" type="tns:shipperDetails"/>
+    		<xs:element name="order" type="tns:order"/>
+       		<xs:element name="invoiceDetails" type="tns:invoiceDetails"/>
+       		<xs:element name="requestedOutputFileFormat" type="common:fileFormat" default = "PDF"/>
+       		<xs:element name="carrierReference" type="tns:carrierReference" minOccurs="0" maxOccurs="1"/>
+       		
+       		<xs:element name="trackingNubmber" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="base64LabelContentRequired" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="base64LabelContent" type="common:binayBase64Type" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="labelPath" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<!-- Added As Part of UPS Integration -->
+       		<xs:element name="postalBarCode" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="maxiCode" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="routingCode" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="version" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		<xs:element name="versionDate" type="common:stringType" minOccurs="0" maxOccurs="1"/>
+       		
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="createShippingUnitRequest">
+		<xs:complexType>
+    		<xs:sequence>
+	    		<xs:element name="shippingUnit" type="tns:shippingUnit"/>
+    		</xs:sequence>
+    		<xs:attribute name="requestTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+  	</xs:element>
+    
+</xs:schema>

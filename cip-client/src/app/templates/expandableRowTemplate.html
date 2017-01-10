@@ -1,0 +1,39 @@
+<div class="row expandedDivRow" style="margin-bottom: 10px;"
+     ng-class="{'slide-down' : row.isExpanded, 'hide' : !row.isExpanded}"
+     ng-controller="carrierListController as carrierListCtrl">
+    <div class="col-xs-2 col-sm-2 col-md-2 carrierSummaryDetailsDiv expandedDivRow">
+        <div>
+            <div toggle-class="row-expanded"
+                 ng-click="row.isExpanded =!row.isExpanded">
+                <span class="upArrow glyphicon glyphicon-chevron-up fontSize16"></span>
+                <h5 class="carrierSummaryHeader">{{'Carrier_Summary_Full' | i18next}}</h5>
+            </div>
+            <div class="w-100 inlineBlock">
+                <div>
+                    <label class="w-70 carrierSummaryDetailsHeader">
+                        <span class="carrierServiceCountdetails">{{'Total_Services_Full' | i18next}} :</span>
+                    </label>
+                    <span class="w-20 carrierSummaryDetails">{{row.entity.subData.totalServices}}</span>
+                    <label class="w-70 carrierSummaryDetailsHeader">
+                        <span class="carrierServiceCountdetails">{{'Active_Services_Full' | i18next}} :</span>
+                    </label>
+                    <span class="w-20 carrierSummaryDetails">{{row.entity.subData.activeServices}}</span>
+                    <label class="w-70 carrierSummaryDetailsHeader">
+                        <span class="carrierServiceCountdetails">{{'Inactive_Services_Full' | i18next}} :</span>
+                    </label>
+                    <span class="w-20 carrierSummaryDetails">{{row.entity.subData.inactiveServices}}</span>
+                </div>
+                <br />
+                <label>{{'Contact_Info_Full' | i18next}} :</label><br />
+                {{row.entity.subData.name}}<br />
+                {{row.entity.subData.telephone}}<br />
+                {{row.entity.subData.email}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-8 col-sm-9 col-md-9 subGrid carrierSummarydetailsDiv2"
+         external-scopes="row.entity.subGridOptions.externalScopes"
+         ui-grid="row.entity.subGridOptions"></div>
+</div>
+<hr class="hr-sub-grid no-margin-top">
+

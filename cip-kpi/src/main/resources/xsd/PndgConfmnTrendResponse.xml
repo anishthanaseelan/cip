@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:pendingConfirmation xmlns:tns="http://www.yourcompany.com/retail/cip/PendingManifest" xmlns:tns1="http://www.yourcompany.com/retail/cip/KPIGenericCriteria" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.yourcompany.com/retail/cip/PendingManifest PndgConfmnTrendResponse.xsd ">
+  <tns:timelineDataSet>
+    <tns:totalCount>0</tns:totalCount>
+    <tns:totalOnCurrentTimeLine>0</tns:totalOnCurrentTimeLine>
+    <tns:dataSet>
+      <tns:sequence>1</tns:sequence>
+      <tns:dataUnit>
+        <tns:xValue1>0</tns:xValue1>
+        <tns:yValue>
+          <tns1:fromDate>tns1:fromDate</tns1:fromDate>
+          <tns1:toDate>tns1:toDate</tns1:toDate>
+        </tns:yValue>
+      </tns:dataUnit>
+    </tns:dataSet>
+  </tns:timelineDataSet>
+</tns:pendingConfirmation>

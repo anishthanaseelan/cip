@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.cts.com/cip/Common"
+	targetNamespace="http://www.cts.com/cip/CancelShippingUnitRequest" 
+	xmlns:tns="http://www.cts.com/cip/CancelShippingUnitRequest">	
+	
+	<!-- Import the dependency xsds -->
+	<xs:import namespace="http://www.cts.com/cip/Common"  
+              schemaLocation="Common.xsd"/>
+
+	<xs:element name="CancelShippingUnitRequest">
+		<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="shippingBaseUnits" type="common:shippingUnitBase" minOccurs = "1" 
+    				maxOccurs="unbounded"/>
+    		</xs:sequence>
+    		<xs:attribute name="requestTransactionID" type ="common:stringType"/>
+  		</xs:complexType>
+  	</xs:element>
+    
+</xs:schema>

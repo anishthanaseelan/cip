@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ReprintShippingLabelRequest requestTransactionID="12345676789088766" xmlns:tns="http://www.cts.com/cip/ReprintShippingLabelRequest" xmlns:tns1="http://www.cts.com/cip/Common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cts.com/cip/ReprintShippingLabelRequest ../../../main/resources/xsd/ReprintShippingLabelRequest.xsd ">
+  <shippingUnitBase tns1:type="CARTON">
+    <tns1:id>0</tns1:id>
+    <tns1:transactionId>1234</tns1:transactionId>
+    <tns1:referenceID>45678</tns1:referenceID>
+    <tns1:description>test</tns1:description>
+    <tns1:state>INITIATED</tns1:state>
+  </shippingUnitBase>
+</tns:ReprintShippingLabelRequest>

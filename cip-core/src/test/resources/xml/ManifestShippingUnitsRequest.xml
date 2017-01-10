@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ManifestShippingUnitsRequest RequestTransactionID="324324" xmlns:tns="http://www.cts.com/cip/ManifestShippingUnitsRequest" xmlns:tns1="http://www.cts.com/cip/Common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cts.com/cip/ManifestShippingUnitsRequest ../../../main/resources/xsd/ManifestShippingUnitsRequest.xsd ">
+  <load>
+    <tns1:id>0</tns1:id>
+    <tns1:loadReferenceId>test</tns1:loadReferenceId>
+    <tns1:loadTrailerNumber>test</tns1:loadTrailerNumber>
+    <tns1:carrierloadTrailerNumber>test</tns1:carrierloadTrailerNumber>
+    <tns1:distributionCenterID>0</tns1:distributionCenterID>
+    <tns1:carrierID>12345</tns1:carrierID>
+    <tns1:totalUnitCount>123434</tns1:totalUnitCount>
+    <tns1:totalUnitWeight tns1:weightUOM="LBS">
+      <tns1:unitWeight>989.0</tns1:unitWeight>
+    </tns1:totalUnitWeight>
+    <tns1:loadState>CREATED</tns1:loadState>
+  </load>
+</tns:ManifestShippingUnitsRequest>

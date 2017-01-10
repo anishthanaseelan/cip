@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.yourcompany.com/retail/cip/KPIGenericCriteria" 
+	elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:tns="http://www.yourcompany.com/retail/cip/KPIGenericCriteria">
+
+
+    <xsd:complexType name="DateTimeRange">
+    	<xsd:sequence>
+    		<xsd:element name="fromDate" maxOccurs="1" minOccurs="1" type="xsd:string">
+    		</xsd:element>
+    		<xsd:element name="toDate" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+
+    <xsd:complexType name="Node">
+    	<xsd:sequence>
+    		<xsd:element name="id" maxOccurs="1" minOccurs="0">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:int">
+    					<xsd:minInclusive value="0"></xsd:minInclusive>
+    					<xsd:maxInclusive value="99999999"></xsd:maxInclusive>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    		<xsd:element name="refId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+    
+    <xsd:complexType name="Carrier">
+    	<xsd:sequence>
+    		<xsd:element name="id" maxOccurs="1" minOccurs="0">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:integer">
+    					<xsd:minInclusive value="0"></xsd:minInclusive>
+    					<xsd:maxInclusive value="99999999"></xsd:maxInclusive>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    		<xsd:element name="refId" type="xsd:string" maxOccurs="1" minOccurs="0">
+    		</xsd:element>
+    		<xsd:element name="carrierServices" type="tns:CarrierService" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="CarrierService">
+    	<xsd:sequence>
+    		<xsd:element name="id" maxOccurs="1" minOccurs="0">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:int">
+    					<xsd:maxInclusive value="99999999"></xsd:maxInclusive>
+    					<xsd:minInclusive value="0"></xsd:minInclusive>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    		<xsd:element name="refId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    
+    <xsd:complexType name="BusinessUnit">
+    	<xsd:sequence>
+    		<xsd:element name="id" maxOccurs="1" minOccurs="0">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:integer">
+    					<xsd:minInclusive value="0"></xsd:minInclusive>
+    					<xsd:maxInclusive value="99999999"></xsd:maxInclusive>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    		<xsd:element name="refId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element name="nodes" type="tns:NodeList"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="kpiFilterCriterias" type="tns:SUKPIFilterCriteria"></xsd:element>
+    
+
+    <xsd:complexType name="SUKPIFilterCriteria">
+    	<xsd:sequence>
+    		<xsd:element name="dateTimeRange" type="tns:DateTimeRange"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="businessUnits"
+    			type="tns:BusinessUnitList" maxOccurs="1"
+    			minOccurs="0">
+    		</xsd:element>
+    		<xsd:element name="carriers" type="tns:CarrierList"
+    			maxOccurs="1" minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CarrierList">
+    	<xsd:sequence>
+    		<xsd:element name="carrier" type="tns:Carrier" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="NodeList">
+    	<xsd:sequence>
+    		<xsd:element name="node" type="tns:Node"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BusinessUnitList">
+    	<xsd:sequence>
+    		<xsd:element name="businessUnit" type="tns:BusinessUnit"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
